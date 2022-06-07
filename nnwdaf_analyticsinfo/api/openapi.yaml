@@ -1,0 +1,5822 @@
+openapi: 3.0.0
+info:
+  description: "Nnwdaf_AnalyticsInfo Service API.  \n© 2022, 3GPP Organizational Partners\
+    \ (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).  \nAll rights reserved.\n"
+  title: Nnwdaf_AnalyticsInfo
+  version: 1.1.4
+externalDocs:
+  description: 3GPP TS 29.520 V16.11.0; 5G System; Network Data Analytics Services.
+  url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.520/
+servers:
+- url: "{apiRoot}/nnwdaf-analyticsinfo/v1"
+  variables:
+    apiRoot:
+      default: https://example.com
+      description: apiRoot as defined in subclause 4.4 of 3GPP TS 29.501.
+security:
+- {}
+- oAuth2ClientCredentials:
+  - nnwdaf-analyticsinfo
+paths:
+  /analytics:
+    get:
+      operationId: GetNWDAFAnalytics
+      parameters:
+      - description: Identify the analytics.
+        explode: true
+        in: query
+        name: event-id
+        required: true
+        schema:
+          $ref: '#/components/schemas/EventId'
+        style: form
+      - content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventReportingRequirement'
+        description: Identifies the analytics reporting requirement information.
+        explode: true
+        in: query
+        name: ana-req
+        required: false
+        style: form
+      - content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventFilter'
+        description: Identify the analytics.
+        explode: true
+        in: query
+        name: event-filter
+        required: false
+        style: form
+      - description: To filter irrelevant responses related to unsupported features
+        explode: true
+        in: query
+        name: supported-features
+        required: false
+        schema:
+          $ref: '#/components/schemas/SupportedFeatures'
+        style: form
+      - content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetUeInformation'
+        description: Identify the target UE information.
+        explode: true
+        in: query
+        name: tgt-ue
+        required: false
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsData'
+          description: Containing the analytics with parameters as relevant for the
+            requesting NF service consumer.
+        "204":
+          description: No Content (The request NWDAF Analytics data does not exist)
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad request
+        "401":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        "403":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Indicates that the NWDAF Analytics resource does not exist.
+        "406":
+          description: 406 Not Acceptable
+        "414":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: URI Too Long
+        "429":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Too Many Requests
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Internal Server Error
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Service Unavailable
+        default:
+          description: Generic Error
+      summary: Read a NWDAF Analytics
+      tags:
+      - NWDAF Analytics (Document)
+components:
+  responses:
+    "400":
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Bad request
+    "401":
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Unauthorized
+    "403":
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Forbidden
+    "406":
+      description: 406 Not Acceptable
+    "414":
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: URI Too Long
+    "429":
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Too Many Requests
+    "500":
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Internal Server Error
+    "503":
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
+      description: Service Unavailable
+    default:
+      description: Generic Error
+  schemas:
+    AnalyticsData:
+      example:
+        sliceLoadLevelInfos:
+        - loadLevelInformation: 0
+          snssais:
+          - sd: sd
+            sst: 153
+          - sd: sd
+            sst: 153
+        - loadLevelInformation: 0
+          snssais:
+          - sd: sd
+            sst: 153
+          - sd: sd
+            sst: 153
+        ueComms:
+        - commDur: 3
+          tsVariance: 7.05877
+          perioTimeVariance: 0.8851375
+          confidence: 0
+          trafChar:
+            fDescs:
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            snssai:
+              sd: sd
+              sst: 153
+            ulVolVariance: 0.10263654
+            dnn: dnn
+            dlVolVariance: 8.969579
+            appId: appId
+            dlVol: 0
+            ulVol: 0
+          commDurVariance: 3.0937452
+          recurringTime:
+            timeOfDayEnd: timeOfDayEnd
+            daysOfWeek:
+            - null
+            - null
+            - null
+            - null
+            - null
+            timeOfDayStart: timeOfDayStart
+          perioTime: 7
+          ts: 2000-01-23T04:56:07.000+00:00
+          ratio: 77
+        - commDur: 3
+          tsVariance: 7.05877
+          perioTimeVariance: 0.8851375
+          confidence: 0
+          trafChar:
+            fDescs:
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            snssai:
+              sd: sd
+              sst: 153
+            ulVolVariance: 0.10263654
+            dnn: dnn
+            dlVolVariance: 8.969579
+            appId: appId
+            dlVol: 0
+            ulVol: 0
+          commDurVariance: 3.0937452
+          recurringTime:
+            timeOfDayEnd: timeOfDayEnd
+            daysOfWeek:
+            - null
+            - null
+            - null
+            - null
+            - null
+            timeOfDayStart: timeOfDayStart
+          perioTime: 7
+          ts: 2000-01-23T04:56:07.000+00:00
+          ratio: 77
+        timeStampGen: 2000-01-23T04:56:07.000+00:00
+        nfLoadLevelInfos:
+        - nfInstanceId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          snssai:
+            sd: sd
+            sst: 153
+          nfStorageUsage: 3
+          nfLoadLevelpeak: 4
+          nfStatus:
+            statusRegistered: 60
+            statusUndiscoverable: 23
+            statusUnregistered: 56
+          nfCpuUsage: 7
+          confidence: 0
+          nfType: null
+          nfSetId: nfSetId
+          nfMemoryUsage: 9
+          nfLoadLevelAverage: 2
+        - nfInstanceId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          snssai:
+            sd: sd
+            sst: 153
+          nfStorageUsage: 3
+          nfLoadLevelpeak: 4
+          nfStatus:
+            statusRegistered: 60
+            statusUndiscoverable: 23
+            statusUnregistered: 56
+          nfCpuUsage: 7
+          confidence: 0
+          nfType: null
+          nfSetId: nfSetId
+          nfMemoryUsage: 9
+          nfLoadLevelAverage: 2
+        svcExps:
+        - networkArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          svcExprcVariance: 5.025005
+          snssai:
+            sd: sd
+            sst: 153
+          supis:
+          - null
+          - null
+          svcExprc:
+            mos: 7.4577446
+            lowerRange: 4.9652185
+            upperRange: 1.1730742
+          dnn: dnn
+          appId: appId
+          confidence: 0
+          nsiId: nsiId
+          ratio: 93
+        - networkArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          svcExprcVariance: 5.025005
+          snssai:
+            sd: sd
+            sst: 153
+          supis:
+          - null
+          - null
+          svcExprc:
+            mos: 7.4577446
+            lowerRange: 4.9652185
+            upperRange: 1.1730742
+          dnn: dnn
+          appId: appId
+          confidence: 0
+          nsiId: nsiId
+          ratio: 93
+        nsiLoadLevelInfos:
+        - snssai:
+            sd: sd
+            sst: 153
+          loadLevelInformation: 1
+          nsiId: nsiId
+        - snssai:
+            sd: sd
+            sst: 153
+          loadLevelInformation: 1
+          nsiId: nsiId
+        userDataCongInfos:
+        - networkArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          snssai:
+            sd: sd
+            sst: 153
+          congestionInfo:
+            timeIntev:
+              startTime: "{}"
+              stopTime: "{}"
+            nsi:
+              nfStorageUsage: 4
+              congLevel: 3
+              nfCpuUsage: 5
+              nfMemoryUsage: 3
+              nfLoadLevel: 7
+            confidence: 0
+            congType: null
+        - networkArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          snssai:
+            sd: sd
+            sst: 153
+          congestionInfo:
+            timeIntev:
+              startTime: "{}"
+              stopTime: "{}"
+            nsi:
+              nfStorageUsage: 4
+              congLevel: 3
+              nfCpuUsage: 5
+              nfMemoryUsage: 3
+              nfLoadLevel: 7
+            confidence: 0
+            congType: null
+        abnorBehavrs:
+        - snssai:
+            sd: sd
+            sst: 153
+          supis:
+          - null
+          - null
+          dnn: dnn
+          confidence: 0
+          excep:
+            excepTrend: null
+            excepId: null
+            excepLevel: 6
+          addtMeasInfo:
+            ddosAttack:
+              ipv6Addrs:
+              - 2001:db8:85a3::8a2e:370:7334
+              - 2001:db8:85a3::8a2e:370:7334
+              ipv4Addrs:
+              - 198.51.100.1
+              - 198.51.100.1
+            unexpLoc:
+              ncgis:
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              tais:
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              gRanNodeIds:
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ecgis:
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+            unexpFlowTeps:
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            wrgDest:
+              ipv6Addrs:
+              - 2001:db8:85a3::8a2e:370:7334
+              - 2001:db8:85a3::8a2e:370:7334
+              ipv4Addrs:
+              - 198.51.100.1
+              - 198.51.100.1
+            unexpWakes:
+            - null
+            - null
+            circums:
+            - locArea:
+                ncgis:
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tais:
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                gRanNodeIds:
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ecgis:
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              vol: 0
+              freq: 4.678948
+              tm: 2000-01-23T04:56:07.000+00:00
+            - locArea:
+                ncgis:
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tais:
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                gRanNodeIds:
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ecgis:
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              vol: 0
+              freq: 4.678948
+              tm: 2000-01-23T04:56:07.000+00:00
+          ratio: 43
+        - snssai:
+            sd: sd
+            sst: 153
+          supis:
+          - null
+          - null
+          dnn: dnn
+          confidence: 0
+          excep:
+            excepTrend: null
+            excepId: null
+            excepLevel: 6
+          addtMeasInfo:
+            ddosAttack:
+              ipv6Addrs:
+              - 2001:db8:85a3::8a2e:370:7334
+              - 2001:db8:85a3::8a2e:370:7334
+              ipv4Addrs:
+              - 198.51.100.1
+              - 198.51.100.1
+            unexpLoc:
+              ncgis:
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              tais:
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              gRanNodeIds:
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ecgis:
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+            unexpFlowTeps:
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            - ethTrafficFilter:
+                destMacAddr: destMacAddr
+                destMacAddrEnd: "{}"
+                sourceMacAddr: "{}"
+                fDir: "{}"
+                ethType: ethType
+                fDesc: fDesc
+                vlanTags:
+                - vlanTags
+                - vlanTags
+                srcMacAddrEnd: "{}"
+              ipTrafficFilter: ipTrafficFilter
+            wrgDest:
+              ipv6Addrs:
+              - 2001:db8:85a3::8a2e:370:7334
+              - 2001:db8:85a3::8a2e:370:7334
+              ipv4Addrs:
+              - 198.51.100.1
+              - 198.51.100.1
+            unexpWakes:
+            - null
+            - null
+            circums:
+            - locArea:
+                ncgis:
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tais:
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                gRanNodeIds:
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ecgis:
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              vol: 0
+              freq: 4.678948
+              tm: 2000-01-23T04:56:07.000+00:00
+            - locArea:
+                ncgis:
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                - nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tais:
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                gRanNodeIds:
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                - eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ecgis:
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                - eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              vol: 0
+              freq: 4.678948
+              tm: 2000-01-23T04:56:07.000+00:00
+          ratio: 43
+        nwPerfs:
+        - networkArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          absoluteNum: 0
+          nwPerfType: null
+          confidence: 0
+          relativeRatio: 11
+        - networkArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          absoluteNum: 0
+          nwPerfType: null
+          confidence: 0
+          relativeRatio: 11
+        ueMobs:
+        - duration: 6
+          durationVariance: 3.5571952
+          recurringTime:
+            timeOfDayEnd: timeOfDayEnd
+            daysOfWeek:
+            - null
+            - null
+            - null
+            - null
+            - null
+            timeOfDayStart: timeOfDayStart
+          ts: 2000-01-23T04:56:07.000+00:00
+          locInfos:
+          - loc:
+              geraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22537
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                mscNumber: mscNumber
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                vlrNumber: vlrNumber
+                locationNumber: locationNumber
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              eutraLocation:
+                geographicalInformation: geographicalInformation
+                globalNgenbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 22822
+                ignoreEcgi: false
+                globalENbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ignoreTai: false
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+                ecgi:
+                  eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              nrLocation:
+                ignoreNcgi: false
+                geographicalInformation: geographicalInformation
+                globalGnbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 4209
+                ncgi:
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              n3gaLocation:
+                ueIpv4Addr: 198.51.100.1
+                twapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                hfcNodeId:
+                  hfcNId: hfcNId
+                protocol: null
+                gli: gli
+                n3gppTai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                tnapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                w5gbanLineType: null
+                ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+                gci: gci
+                n3IwfId: n3IwfId
+                portNumber: 0
+              utraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22210
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+            confidence: 0
+            ratio: 59
+          - loc:
+              geraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22537
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                mscNumber: mscNumber
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                vlrNumber: vlrNumber
+                locationNumber: locationNumber
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              eutraLocation:
+                geographicalInformation: geographicalInformation
+                globalNgenbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 22822
+                ignoreEcgi: false
+                globalENbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ignoreTai: false
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+                ecgi:
+                  eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              nrLocation:
+                ignoreNcgi: false
+                geographicalInformation: geographicalInformation
+                globalGnbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 4209
+                ncgi:
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              n3gaLocation:
+                ueIpv4Addr: 198.51.100.1
+                twapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                hfcNodeId:
+                  hfcNId: hfcNId
+                protocol: null
+                gli: gli
+                n3gppTai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                tnapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                w5gbanLineType: null
+                ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+                gci: gci
+                n3IwfId: n3IwfId
+                portNumber: 0
+              utraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22210
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+            confidence: 0
+            ratio: 59
+        - duration: 6
+          durationVariance: 3.5571952
+          recurringTime:
+            timeOfDayEnd: timeOfDayEnd
+            daysOfWeek:
+            - null
+            - null
+            - null
+            - null
+            - null
+            timeOfDayStart: timeOfDayStart
+          ts: 2000-01-23T04:56:07.000+00:00
+          locInfos:
+          - loc:
+              geraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22537
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                mscNumber: mscNumber
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                vlrNumber: vlrNumber
+                locationNumber: locationNumber
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              eutraLocation:
+                geographicalInformation: geographicalInformation
+                globalNgenbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 22822
+                ignoreEcgi: false
+                globalENbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ignoreTai: false
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+                ecgi:
+                  eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              nrLocation:
+                ignoreNcgi: false
+                geographicalInformation: geographicalInformation
+                globalGnbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 4209
+                ncgi:
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              n3gaLocation:
+                ueIpv4Addr: 198.51.100.1
+                twapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                hfcNodeId:
+                  hfcNId: hfcNId
+                protocol: null
+                gli: gli
+                n3gppTai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                tnapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                w5gbanLineType: null
+                ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+                gci: gci
+                n3IwfId: n3IwfId
+                portNumber: 0
+              utraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22210
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+            confidence: 0
+            ratio: 59
+          - loc:
+              geraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22537
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                mscNumber: mscNumber
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                vlrNumber: vlrNumber
+                locationNumber: locationNumber
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              eutraLocation:
+                geographicalInformation: geographicalInformation
+                globalNgenbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 22822
+                ignoreEcgi: false
+                globalENbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ignoreTai: false
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+                ecgi:
+                  eutraCellId: eutraCellId
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+              nrLocation:
+                ignoreNcgi: false
+                geographicalInformation: geographicalInformation
+                globalGnbId:
+                  eNbId: eNbId
+                  wagfId: wagfId
+                  tngfId: tngfId
+                  gNbId:
+                    bitLength: 23
+                    gNBValue: gNBValue
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  n3IwfId: n3IwfId
+                  ngeNbId: ngeNbId
+                ageOfLocationInformation: 4209
+                ncgi:
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  nrCellId: nrCellId
+                tai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+              n3gaLocation:
+                ueIpv4Addr: 198.51.100.1
+                twapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                hfcNodeId:
+                  hfcNId: hfcNId
+                protocol: null
+                gli: gli
+                n3gppTai:
+                  tac: tac
+                  nid: nid
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                tnapId:
+                  bssId: bssId
+                  civicAddress: civicAddress
+                  ssId: ssId
+                w5gbanLineType: null
+                ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+                gci: gci
+                n3IwfId: n3IwfId
+                portNumber: 0
+              utraLocation:
+                geographicalInformation: geographicalInformation
+                ageOfLocationInformation: 22210
+                cgi:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  cellId: cellId
+                  lac: lac
+                lai:
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                sai:
+                  sac: sac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                rai:
+                  rac: rac
+                  plmnId:
+                    mnc: mnc
+                    mcc: mcc
+                  lac: lac
+                ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+                geodeticInformation: geodeticInformation
+            confidence: 0
+            ratio: 59
+        expiry: 2000-01-23T04:56:07.000+00:00
+        qosSustainInfos:
+        - areaInfo:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          snssai:
+            sd: sd
+            sst: 153
+          qosFlowRetThd:
+            relTimeUnit: null
+            relFlowRatio: 87
+            relFlowNum: 0
+          confidence: 0
+          endTs: 2000-01-23T04:56:07.000+00:00
+          startTs: 2000-01-23T04:56:07.000+00:00
+          ranUeThrouThd: ranUeThrouThd
+        - areaInfo:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          snssai:
+            sd: sd
+            sst: 153
+          qosFlowRetThd:
+            relTimeUnit: null
+            relFlowRatio: 87
+            relFlowNum: 0
+          confidence: 0
+          endTs: 2000-01-23T04:56:07.000+00:00
+          startTs: 2000-01-23T04:56:07.000+00:00
+          ranUeThrouThd: ranUeThrouThd
+        suppFeat: suppFeat
+      properties:
+        expiry:
+          format: date-time
+          type: string
+        timeStampGen:
+          format: date-time
+          type: string
+        sliceLoadLevelInfos:
+          description: The slices and their load level information.
+          items:
+            $ref: '#/components/schemas/SliceLoadLevelInformation'
+          minItems: 1
+          type: array
+        nsiLoadLevelInfos:
+          items:
+            $ref: '#/components/schemas/NsiLoadLevelInfo'
+          minItems: 1
+          type: array
+        nfLoadLevelInfos:
+          items:
+            $ref: '#/components/schemas/NfLoadLevelInformation'
+          minItems: 1
+          type: array
+        nwPerfs:
+          items:
+            $ref: '#/components/schemas/NetworkPerfInfo'
+          minItems: 1
+          type: array
+        svcExps:
+          items:
+            $ref: '#/components/schemas/ServiceExperienceInfo'
+          minItems: 1
+          type: array
+        qosSustainInfos:
+          items:
+            $ref: '#/components/schemas/QosSustainabilityInfo'
+          minItems: 1
+          type: array
+        ueMobs:
+          items:
+            $ref: '#/components/schemas/UeMobility'
+          minItems: 1
+          type: array
+        ueComms:
+          items:
+            $ref: '#/components/schemas/UeCommunication'
+          minItems: 1
+          type: array
+        userDataCongInfos:
+          items:
+            $ref: '#/components/schemas/UserDataCongestionInfo'
+          minItems: 1
+          type: array
+        abnorBehavrs:
+          items:
+            $ref: '#/components/schemas/AbnormalBehaviour'
+          minItems: 1
+          type: array
+        suppFeat:
+          pattern: "^[A-Fa-f0-9]*$"
+          type: string
+      type: object
+    EventFilter:
+      description: Represents the event filters used to identify the requested analytics.
+      not:
+        required:
+        - anySlice
+        - snssais
+      properties:
+        anySlice:
+          description: FALSE represents not applicable for all slices. TRUE represents
+            applicable for all slices.
+          type: boolean
+        snssais:
+          description: Identification(s) of network slice to which the subscription
+            belongs.
+          items:
+            $ref: '#/components/schemas/Snssai'
+          minItems: 1
+          type: array
+        appIds:
+          items:
+            $ref: '#/components/schemas/ApplicationId'
+          minItems: 1
+          type: array
+        dnns:
+          items:
+            $ref: '#/components/schemas/Dnn'
+          minItems: 1
+          type: array
+        dnais:
+          items:
+            $ref: '#/components/schemas/Dnai'
+          minItems: 1
+          type: array
+        networkArea:
+          $ref: '#/components/schemas/NetworkAreaInfo'
+        nfInstanceIds:
+          items:
+            $ref: '#/components/schemas/NfInstanceId'
+          minItems: 1
+          type: array
+        nfSetIds:
+          items:
+            $ref: '#/components/schemas/NfSetId'
+          minItems: 1
+          type: array
+        nfTypes:
+          items:
+            $ref: '#/components/schemas/NFType'
+          minItems: 1
+          type: array
+        nsiIdInfos:
+          items:
+            $ref: '#/components/schemas/NsiIdInfo'
+          minItems: 1
+          type: array
+        qosRequ:
+          $ref: '#/components/schemas/QosRequirement'
+        nwPerfTypes:
+          items:
+            $ref: '#/components/schemas/NetworkPerfType'
+          minItems: 1
+          type: array
+        bwRequs:
+          items:
+            $ref: '#/components/schemas/BwRequirement'
+          minItems: 1
+          type: array
+        excepIds:
+          items:
+            $ref: '#/components/schemas/ExceptionId'
+          minItems: 1
+          type: array
+        exptAnaType:
+          $ref: '#/components/schemas/ExpectedAnalyticsType'
+        exptUeBehav:
+          $ref: '#/components/schemas/ExpectedUeBehaviourData'
+      type: object
+    EventId:
+      anyOf:
+      - $ref: '#/components/schemas/EventId_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - LOAD_LEVEL_INFORMATION: Represent the analytics\
+        \ of load level information of corresponding network slice. - NETWORK_PERFORMANCE:\
+        \ Represent the analytics of network performance information. - NF_LOAD: Indicates\
+        \ that the event subscribed is NF Load. - SERVICE_EXPERIENCE: Represent the\
+        \ analytics of service experience information of the specific applications.\
+        \ - UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION:\
+        \ Represent the analytics of UE communication. - QOS_SUSTAINABILITY: Represent\
+        \ the analytics of QoS sustainability information in the certain area.  -\
+        \ ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour\
+        \ information. - USER_DATA_CONGESTION: Represent the analytics of the user\
+        \ data congestion in the certain area. - NSI_LOAD_LEVEL: Represent the analytics\
+        \ of Network Slice and the optionally associated Network Slice Instance.\n"
+    EventReportingRequirement:
+      properties:
+        accuracy:
+          $ref: '#/components/schemas/Accuracy'
+        startTs:
+          format: date-time
+          type: string
+        endTs:
+          format: date-time
+          type: string
+        sampRatio:
+          maximum: 100
+          minimum: 1
+          type: integer
+        maxObjectNbr:
+          minimum: 0
+          type: integer
+        maxSupiNbr:
+          minimum: 0
+          type: integer
+        timeAnaNeeded:
+          format: date-time
+          type: string
+      type: object
+    Accuracy:
+      anyOf:
+      - $ref: '#/components/schemas/Accuracy_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - LOW: Low accuracy. - HIGH: High accuracy.\n"
+    SupportedFeatures:
+      pattern: "^[A-Fa-f0-9]*$"
+      type: string
+    TargetUeInformation:
+      properties:
+        anyUe:
+          type: boolean
+        supis:
+          items:
+            $ref: '#/components/schemas/Supi'
+          type: array
+        intGroupIds:
+          items:
+            $ref: '#/components/schemas/GroupId'
+          type: array
+      type: object
+    ProblemDetails:
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        instance:
+          type: string
+        cause:
+          type: string
+        invalidParams:
+          items:
+            $ref: '#/components/schemas/InvalidParam'
+          minItems: 1
+          type: array
+        supportedFeatures:
+          pattern: "^[A-Fa-f0-9]*$"
+          type: string
+        accessTokenError:
+          $ref: '#/components/schemas/AccessTokenErr'
+        accessTokenRequest:
+          $ref: '#/components/schemas/AccessTokenReq'
+        nrfId:
+          type: string
+      type: object
+    Uri:
+      type: string
+    InvalidParam:
+      properties:
+        param:
+          type: string
+        reason:
+          type: string
+      required:
+      - param
+      type: object
+    DateTime:
+      format: date-time
+      type: string
+    SliceLoadLevelInformation:
+      example:
+        loadLevelInformation: 0
+        snssais:
+        - sd: sd
+          sst: 153
+        - sd: sd
+          sst: 153
+      properties:
+        loadLevelInformation:
+          description: Load level information of the network slice and the optionally
+            associated network slice instance.
+          type: integer
+        snssais:
+          description: Identification(s) of network slice to which the subscription
+            applies.
+          items:
+            $ref: '#/components/schemas/Snssai'
+          minItems: 1
+          type: array
+      required:
+      - loadLevelInformation
+      - snssais
+      type: object
+    LoadLevelInformation:
+      description: Load level information of the network slice and the optionally
+        associated network slice instance.
+      type: integer
+    NsiLoadLevelInfo:
+      description: Represents the network slice and optionally the associated network
+        slice instance and the load level information.
+      example:
+        snssai:
+          sd: sd
+          sst: 153
+        loadLevelInformation: 1
+        nsiId: nsiId
+      properties:
+        loadLevelInformation:
+          description: Load level information of the network slice and the optionally
+            associated network slice instance.
+          type: integer
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+        nsiId:
+          type: string
+      required:
+      - loadLevelInformation
+      - snssai
+      type: object
+    NfLoadLevelInformation:
+      example:
+        nfInstanceId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        snssai:
+          sd: sd
+          sst: 153
+        nfStorageUsage: 3
+        nfLoadLevelpeak: 4
+        nfStatus:
+          statusRegistered: 60
+          statusUndiscoverable: 23
+          statusUnregistered: 56
+        nfCpuUsage: 7
+        confidence: 0
+        nfType: null
+        nfSetId: nfSetId
+        nfMemoryUsage: 9
+        nfLoadLevelAverage: 2
+      properties:
+        nfType:
+          $ref: '#/components/schemas/NFType'
+        nfInstanceId:
+          format: uuid
+          type: string
+        nfSetId:
+          type: string
+        nfStatus:
+          $ref: '#/components/schemas/NfStatus'
+        nfCpuUsage:
+          type: integer
+        nfMemoryUsage:
+          type: integer
+        nfStorageUsage:
+          type: integer
+        nfLoadLevelAverage:
+          type: integer
+        nfLoadLevelpeak:
+          type: integer
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+        confidence:
+          minimum: 0
+          type: integer
+      required:
+      - nfInstanceId
+      - nfType
+      type: object
+    NfStatus:
+      example:
+        statusRegistered: 60
+        statusUndiscoverable: 23
+        statusUnregistered: 56
+      properties:
+        statusRegistered:
+          maximum: 100
+          minimum: 1
+          type: integer
+        statusUnregistered:
+          maximum: 100
+          minimum: 1
+          type: integer
+        statusUndiscoverable:
+          maximum: 100
+          minimum: 1
+          type: integer
+      type: object
+    NetworkPerfInfo:
+      example:
+        networkArea:
+          ncgis:
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          tais:
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          gRanNodeIds:
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ecgis:
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+        absoluteNum: 0
+        nwPerfType: null
+        confidence: 0
+        relativeRatio: 11
+      properties:
+        networkArea:
+          $ref: '#/components/schemas/NetworkAreaInfo'
+        nwPerfType:
+          $ref: '#/components/schemas/NetworkPerfType'
+        relativeRatio:
+          maximum: 100
+          minimum: 1
+          type: integer
+        absoluteNum:
+          minimum: 0
+          type: integer
+        confidence:
+          minimum: 0
+          type: integer
+      required:
+      - networkArea
+      - nwPerfType
+      type: object
+    NetworkPerfType:
+      anyOf:
+      - $ref: '#/components/schemas/NetworkPerfType_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are\n  - GNB_ACTIVE_RATIO: Indicates that the\
+        \ network performance requirement is gNodeB active (i.e. up and running) rate.\
+        \ Indicates the ratio of gNB active (i.e. up and running) number to the total\
+        \ number of gNB\n  - GNB_COMPUTING_USAGE: Indicates gNodeB computing resource\
+        \ usage.\n  - GNB_MEMORY_USAGE: Indicates gNodeB memory usage.\n  - GNB_DISK_USAGE:\
+        \ Indicates gNodeB disk usage.\n  - NUM_OF_UE: Indicates number of UEs.\n\
+        \  - SESS_SUCC_RATIO: Indicates ratio of successful setup of PDU sessions\
+        \ to total PDU session setup attempts.\n  - SESS_SUCC_RATIO: Indicates Ratio\
+        \ of successful handovers to the total handover attempts. \n"
+    ServiceExperienceInfo:
+      example:
+        networkArea:
+          ncgis:
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          tais:
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          gRanNodeIds:
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ecgis:
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+        svcExprcVariance: 5.025005
+        snssai:
+          sd: sd
+          sst: 153
+        supis:
+        - null
+        - null
+        svcExprc:
+          mos: 7.4577446
+          lowerRange: 4.9652185
+          upperRange: 1.1730742
+        dnn: dnn
+        appId: appId
+        confidence: 0
+        nsiId: nsiId
+        ratio: 93
+      properties:
+        svcExprc:
+          $ref: '#/components/schemas/SvcExperience'
+        svcExprcVariance:
+          format: float
+          type: number
+        supis:
+          items:
+            $ref: '#/components/schemas/Supi'
+          minItems: 1
+          type: array
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+        appId:
+          type: string
+        confidence:
+          minimum: 0
+          type: integer
+        dnn:
+          type: string
+        networkArea:
+          $ref: '#/components/schemas/NetworkAreaInfo'
+        nsiId:
+          type: string
+        ratio:
+          maximum: 100
+          minimum: 1
+          type: integer
+      required:
+      - svcExprc
+      type: object
+    QosSustainabilityInfo:
+      example:
+        areaInfo:
+          ncgis:
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          tais:
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          gRanNodeIds:
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ecgis:
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+        snssai:
+          sd: sd
+          sst: 153
+        qosFlowRetThd:
+          relTimeUnit: null
+          relFlowRatio: 87
+          relFlowNum: 0
+        confidence: 0
+        endTs: 2000-01-23T04:56:07.000+00:00
+        startTs: 2000-01-23T04:56:07.000+00:00
+        ranUeThrouThd: ranUeThrouThd
+      properties:
+        areaInfo:
+          $ref: '#/components/schemas/NetworkAreaInfo'
+        startTs:
+          format: date-time
+          type: string
+        endTs:
+          format: date-time
+          type: string
+        qosFlowRetThd:
+          $ref: '#/components/schemas/RetainabilityThreshold'
+        ranUeThrouThd:
+          pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+          type: string
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+        confidence:
+          minimum: 0
+          type: integer
+      type: object
+    RetainabilityThreshold:
+      example:
+        relTimeUnit: null
+        relFlowRatio: 87
+        relFlowNum: 0
+      properties:
+        relFlowNum:
+          minimum: 0
+          type: integer
+        relTimeUnit:
+          $ref: '#/components/schemas/TimeUnit'
+        relFlowRatio:
+          maximum: 100
+          minimum: 1
+          type: integer
+      type: object
+    TimeUnit:
+      anyOf:
+      - $ref: '#/components/schemas/TimeUnit_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - MINUTE: Time unit is per minute. - HOUR:\
+        \ Time unit is per hour. - DAY: Time unit is per day.\n"
+    UeMobility:
+      example:
+        duration: 6
+        durationVariance: 3.5571952
+        recurringTime:
+          timeOfDayEnd: timeOfDayEnd
+          daysOfWeek:
+          - null
+          - null
+          - null
+          - null
+          - null
+          timeOfDayStart: timeOfDayStart
+        ts: 2000-01-23T04:56:07.000+00:00
+        locInfos:
+        - loc:
+            geraLocation:
+              geographicalInformation: geographicalInformation
+              ageOfLocationInformation: 22537
+              cgi:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+                lac: lac
+              lai:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              mscNumber: mscNumber
+              sai:
+                sac: sac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              rai:
+                rac: rac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              vlrNumber: vlrNumber
+              locationNumber: locationNumber
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+            eutraLocation:
+              geographicalInformation: geographicalInformation
+              globalNgenbId:
+                eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ageOfLocationInformation: 22822
+              ignoreEcgi: false
+              globalENbId:
+                eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              tai:
+                tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              ignoreTai: false
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+              ecgi:
+                eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+            nrLocation:
+              ignoreNcgi: false
+              geographicalInformation: geographicalInformation
+              globalGnbId:
+                eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ageOfLocationInformation: 4209
+              ncgi:
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              tai:
+                tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+            n3gaLocation:
+              ueIpv4Addr: 198.51.100.1
+              twapId:
+                bssId: bssId
+                civicAddress: civicAddress
+                ssId: ssId
+              hfcNodeId:
+                hfcNId: hfcNId
+              protocol: null
+              gli: gli
+              n3gppTai:
+                tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              tnapId:
+                bssId: bssId
+                civicAddress: civicAddress
+                ssId: ssId
+              w5gbanLineType: null
+              ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+              gci: gci
+              n3IwfId: n3IwfId
+              portNumber: 0
+            utraLocation:
+              geographicalInformation: geographicalInformation
+              ageOfLocationInformation: 22210
+              cgi:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+                lac: lac
+              lai:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              sai:
+                sac: sac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              rai:
+                rac: rac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+          confidence: 0
+          ratio: 59
+        - loc:
+            geraLocation:
+              geographicalInformation: geographicalInformation
+              ageOfLocationInformation: 22537
+              cgi:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+                lac: lac
+              lai:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              mscNumber: mscNumber
+              sai:
+                sac: sac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              rai:
+                rac: rac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              vlrNumber: vlrNumber
+              locationNumber: locationNumber
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+            eutraLocation:
+              geographicalInformation: geographicalInformation
+              globalNgenbId:
+                eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ageOfLocationInformation: 22822
+              ignoreEcgi: false
+              globalENbId:
+                eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              tai:
+                tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              ignoreTai: false
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+              ecgi:
+                eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+            nrLocation:
+              ignoreNcgi: false
+              geographicalInformation: geographicalInformation
+              globalGnbId:
+                eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ageOfLocationInformation: 4209
+              ncgi:
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              tai:
+                tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+            n3gaLocation:
+              ueIpv4Addr: 198.51.100.1
+              twapId:
+                bssId: bssId
+                civicAddress: civicAddress
+                ssId: ssId
+              hfcNodeId:
+                hfcNId: hfcNId
+              protocol: null
+              gli: gli
+              n3gppTai:
+                tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              tnapId:
+                bssId: bssId
+                civicAddress: civicAddress
+                ssId: ssId
+              w5gbanLineType: null
+              ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+              gci: gci
+              n3IwfId: n3IwfId
+              portNumber: 0
+            utraLocation:
+              geographicalInformation: geographicalInformation
+              ageOfLocationInformation: 22210
+              cgi:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                cellId: cellId
+                lac: lac
+              lai:
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              sai:
+                sac: sac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              rai:
+                rac: rac
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                lac: lac
+              ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+              geodeticInformation: geodeticInformation
+          confidence: 0
+          ratio: 59
+      properties:
+        ts:
+          format: date-time
+          type: string
+        recurringTime:
+          $ref: '#/components/schemas/ScheduledCommunicationTime'
+        duration:
+          type: integer
+        durationVariance:
+          format: float
+          type: number
+        locInfos:
+          items:
+            $ref: '#/components/schemas/LocationInfo'
+          minItems: 1
+          type: array
+      required:
+      - duration
+      - locInfos
+      type: object
+    LocationInfo:
+      example:
+        loc:
+          geraLocation:
+            geographicalInformation: geographicalInformation
+            ageOfLocationInformation: 22537
+            cgi:
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              cellId: cellId
+              lac: lac
+            lai:
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              lac: lac
+            mscNumber: mscNumber
+            sai:
+              sac: sac
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              lac: lac
+            rai:
+              rac: rac
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              lac: lac
+            vlrNumber: vlrNumber
+            locationNumber: locationNumber
+            ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+            geodeticInformation: geodeticInformation
+          eutraLocation:
+            geographicalInformation: geographicalInformation
+            globalNgenbId:
+              eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ageOfLocationInformation: 22822
+            ignoreEcgi: false
+            globalENbId:
+              eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            tai:
+              tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            ignoreTai: false
+            ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+            geodeticInformation: geodeticInformation
+            ecgi:
+              eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          nrLocation:
+            ignoreNcgi: false
+            geographicalInformation: geographicalInformation
+            globalGnbId:
+              eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ageOfLocationInformation: 4209
+            ncgi:
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tai:
+              tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+            geodeticInformation: geodeticInformation
+          n3gaLocation:
+            ueIpv4Addr: 198.51.100.1
+            twapId:
+              bssId: bssId
+              civicAddress: civicAddress
+              ssId: ssId
+            hfcNodeId:
+              hfcNId: hfcNId
+            protocol: null
+            gli: gli
+            n3gppTai:
+              tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            tnapId:
+              bssId: bssId
+              civicAddress: civicAddress
+              ssId: ssId
+            w5gbanLineType: null
+            ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+            gci: gci
+            n3IwfId: n3IwfId
+            portNumber: 0
+          utraLocation:
+            geographicalInformation: geographicalInformation
+            ageOfLocationInformation: 22210
+            cgi:
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              cellId: cellId
+              lac: lac
+            lai:
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              lac: lac
+            sai:
+              sac: sac
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              lac: lac
+            rai:
+              rac: rac
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              lac: lac
+            ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+            geodeticInformation: geodeticInformation
+        confidence: 0
+        ratio: 59
+      properties:
+        loc:
+          $ref: '#/components/schemas/UserLocation'
+        ratio:
+          maximum: 100
+          minimum: 1
+          type: integer
+        confidence:
+          minimum: 0
+          type: integer
+      required:
+      - loc
+      type: object
+    UeCommunication:
+      example:
+        commDur: 3
+        tsVariance: 7.05877
+        perioTimeVariance: 0.8851375
+        confidence: 0
+        trafChar:
+          fDescs:
+          - ethTrafficFilter:
+              destMacAddr: destMacAddr
+              destMacAddrEnd: "{}"
+              sourceMacAddr: "{}"
+              fDir: "{}"
+              ethType: ethType
+              fDesc: fDesc
+              vlanTags:
+              - vlanTags
+              - vlanTags
+              srcMacAddrEnd: "{}"
+            ipTrafficFilter: ipTrafficFilter
+          - ethTrafficFilter:
+              destMacAddr: destMacAddr
+              destMacAddrEnd: "{}"
+              sourceMacAddr: "{}"
+              fDir: "{}"
+              ethType: ethType
+              fDesc: fDesc
+              vlanTags:
+              - vlanTags
+              - vlanTags
+              srcMacAddrEnd: "{}"
+            ipTrafficFilter: ipTrafficFilter
+          snssai:
+            sd: sd
+            sst: 153
+          ulVolVariance: 0.10263654
+          dnn: dnn
+          dlVolVariance: 8.969579
+          appId: appId
+          dlVol: 0
+          ulVol: 0
+        commDurVariance: 3.0937452
+        recurringTime:
+          timeOfDayEnd: timeOfDayEnd
+          daysOfWeek:
+          - null
+          - null
+          - null
+          - null
+          - null
+          timeOfDayStart: timeOfDayStart
+        perioTime: 7
+        ts: 2000-01-23T04:56:07.000+00:00
+        ratio: 77
+      properties:
+        commDur:
+          type: integer
+        commDurVariance:
+          format: float
+          type: number
+        perioTime:
+          type: integer
+        perioTimeVariance:
+          format: float
+          type: number
+        ts:
+          format: date-time
+          type: string
+        tsVariance:
+          format: float
+          type: number
+        recurringTime:
+          $ref: '#/components/schemas/ScheduledCommunicationTime'
+        trafChar:
+          $ref: '#/components/schemas/TrafficCharacterization'
+        ratio:
+          maximum: 100
+          minimum: 1
+          type: integer
+        confidence:
+          minimum: 0
+          type: integer
+      required:
+      - commDur
+      - trafChar
+      type: object
+    TrafficCharacterization:
+      example:
+        fDescs:
+        - ethTrafficFilter:
+            destMacAddr: destMacAddr
+            destMacAddrEnd: "{}"
+            sourceMacAddr: "{}"
+            fDir: "{}"
+            ethType: ethType
+            fDesc: fDesc
+            vlanTags:
+            - vlanTags
+            - vlanTags
+            srcMacAddrEnd: "{}"
+          ipTrafficFilter: ipTrafficFilter
+        - ethTrafficFilter:
+            destMacAddr: destMacAddr
+            destMacAddrEnd: "{}"
+            sourceMacAddr: "{}"
+            fDir: "{}"
+            ethType: ethType
+            fDesc: fDesc
+            vlanTags:
+            - vlanTags
+            - vlanTags
+            srcMacAddrEnd: "{}"
+          ipTrafficFilter: ipTrafficFilter
+        snssai:
+          sd: sd
+          sst: 153
+        ulVolVariance: 0.10263654
+        dnn: dnn
+        dlVolVariance: 8.969579
+        appId: appId
+        dlVol: 0
+        ulVol: 0
+      properties:
+        dnn:
+          type: string
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+        appId:
+          type: string
+        fDescs:
+          items:
+            $ref: '#/components/schemas/IpEthFlowDescription'
+          maxItems: 2
+          minItems: 1
+          type: array
+        ulVol:
+          description: Unsigned integer identifying a volume in units of bytes.
+          format: int64
+          minimum: 0
+          type: integer
+        ulVolVariance:
+          format: float
+          type: number
+        dlVol:
+          description: Unsigned integer identifying a volume in units of bytes.
+          format: int64
+          minimum: 0
+          type: integer
+        dlVolVariance:
+          format: float
+          type: number
+      type: object
+    IpEthFlowDescription:
+      example:
+        ethTrafficFilter:
+          destMacAddr: destMacAddr
+          destMacAddrEnd: "{}"
+          sourceMacAddr: "{}"
+          fDir: "{}"
+          ethType: ethType
+          fDesc: fDesc
+          vlanTags:
+          - vlanTags
+          - vlanTags
+          srcMacAddrEnd: "{}"
+        ipTrafficFilter: ipTrafficFilter
+      properties:
+        ipTrafficFilter:
+          description: Defines a packet filter of an IP flow.
+          type: string
+        ethTrafficFilter:
+          $ref: '#/components/schemas/EthFlowDescription'
+      type: object
+    UserDataCongestionInfo:
+      example:
+        networkArea:
+          ncgis:
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          tais:
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          gRanNodeIds:
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ecgis:
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+        snssai:
+          sd: sd
+          sst: 153
+        congestionInfo:
+          timeIntev:
+            startTime: "{}"
+            stopTime: "{}"
+          nsi:
+            nfStorageUsage: 4
+            congLevel: 3
+            nfCpuUsage: 5
+            nfMemoryUsage: 3
+            nfLoadLevel: 7
+          confidence: 0
+          congType: null
+      properties:
+        networkArea:
+          $ref: '#/components/schemas/NetworkAreaInfo'
+        congestionInfo:
+          $ref: '#/components/schemas/CongestionInfo'
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+      type: object
+    CongestionInfo:
+      example:
+        timeIntev:
+          startTime: "{}"
+          stopTime: "{}"
+        nsi:
+          nfStorageUsage: 4
+          congLevel: 3
+          nfCpuUsage: 5
+          nfMemoryUsage: 3
+          nfLoadLevel: 7
+        confidence: 0
+        congType: null
+      properties:
+        congType:
+          $ref: '#/components/schemas/CongestionType'
+        timeIntev:
+          $ref: '#/components/schemas/TimeWindow'
+        nsi:
+          $ref: '#/components/schemas/ThresholdLevel'
+        confidence:
+          minimum: 0
+          type: integer
+      required:
+      - congType
+      - nsi
+      - timeIntev
+      type: object
+    CongestionType:
+      anyOf:
+      - $ref: '#/components/schemas/CongestionType_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - USER_PLANE: The congestion analytics type\
+        \ is User Plane.  - CONTROL_PLANE: The congestion analytics type is Control\
+        \ Plane. - USER_AND_CONTROL_PLANE: The congestion analytics type is User Plane\
+        \ and Control Plane.\n"
+    ThresholdLevel:
+      example:
+        nfStorageUsage: 4
+        congLevel: 3
+        nfCpuUsage: 5
+        nfMemoryUsage: 3
+        nfLoadLevel: 7
+      properties:
+        congLevel:
+          type: integer
+        nfLoadLevel:
+          type: integer
+        nfCpuUsage:
+          type: integer
+        nfMemoryUsage:
+          type: integer
+        nfStorageUsage:
+          type: integer
+      type: object
+    AbnormalBehaviour:
+      example:
+        snssai:
+          sd: sd
+          sst: 153
+        supis:
+        - null
+        - null
+        dnn: dnn
+        confidence: 0
+        excep:
+          excepTrend: null
+          excepId: null
+          excepLevel: 6
+        addtMeasInfo:
+          ddosAttack:
+            ipv6Addrs:
+            - 2001:db8:85a3::8a2e:370:7334
+            - 2001:db8:85a3::8a2e:370:7334
+            ipv4Addrs:
+            - 198.51.100.1
+            - 198.51.100.1
+          unexpLoc:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          unexpFlowTeps:
+          - ethTrafficFilter:
+              destMacAddr: destMacAddr
+              destMacAddrEnd: "{}"
+              sourceMacAddr: "{}"
+              fDir: "{}"
+              ethType: ethType
+              fDesc: fDesc
+              vlanTags:
+              - vlanTags
+              - vlanTags
+              srcMacAddrEnd: "{}"
+            ipTrafficFilter: ipTrafficFilter
+          - ethTrafficFilter:
+              destMacAddr: destMacAddr
+              destMacAddrEnd: "{}"
+              sourceMacAddr: "{}"
+              fDir: "{}"
+              ethType: ethType
+              fDesc: fDesc
+              vlanTags:
+              - vlanTags
+              - vlanTags
+              srcMacAddrEnd: "{}"
+            ipTrafficFilter: ipTrafficFilter
+          wrgDest:
+            ipv6Addrs:
+            - 2001:db8:85a3::8a2e:370:7334
+            - 2001:db8:85a3::8a2e:370:7334
+            ipv4Addrs:
+            - 198.51.100.1
+            - 198.51.100.1
+          unexpWakes:
+          - null
+          - null
+          circums:
+          - locArea:
+              ncgis:
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              tais:
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              gRanNodeIds:
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ecgis:
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+            vol: 0
+            freq: 4.678948
+            tm: 2000-01-23T04:56:07.000+00:00
+          - locArea:
+              ncgis:
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              - nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                nrCellId: nrCellId
+              tais:
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - tac: tac
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              gRanNodeIds:
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              - eNbId: eNbId
+                wagfId: wagfId
+                tngfId: tngfId
+                gNbId:
+                  bitLength: 23
+                  gNBValue: gNBValue
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+                n3IwfId: n3IwfId
+                ngeNbId: ngeNbId
+              ecgis:
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+              - eutraCellId: eutraCellId
+                nid: nid
+                plmnId:
+                  mnc: mnc
+                  mcc: mcc
+            vol: 0
+            freq: 4.678948
+            tm: 2000-01-23T04:56:07.000+00:00
+        ratio: 43
+      properties:
+        supis:
+          items:
+            $ref: '#/components/schemas/Supi'
+          minItems: 1
+          type: array
+        excep:
+          $ref: '#/components/schemas/Exception'
+        dnn:
+          type: string
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+        ratio:
+          maximum: 100
+          minimum: 1
+          type: integer
+        confidence:
+          minimum: 0
+          type: integer
+        addtMeasInfo:
+          $ref: '#/components/schemas/AdditionalMeasurement'
+      required:
+      - excep
+      type: object
+    Exception:
+      example:
+        excepTrend: null
+        excepId: null
+        excepLevel: 6
+      properties:
+        excepId:
+          $ref: '#/components/schemas/ExceptionId'
+        excepLevel:
+          type: integer
+        excepTrend:
+          $ref: '#/components/schemas/ExceptionTrend'
+      required:
+      - excepId
+      type: object
+    ExceptionId:
+      anyOf:
+      - $ref: '#/components/schemas/ExceptionId_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are\n  - UNEXPECTED_UE_LOCATION: Unexpected UE\
+        \ location\n  - UNEXPECTED_LONG_LIVE_FLOW: Unexpected long-live rate flows\n\
+        \  - UNEXPECTED_LARGE_RATE_FLOW: Unexpected large rate flows\n  - UNEXPECTED_WAKEUP:\
+        \ Unexpected wakeup\n  - SUSPICION_OF_DDOS_ATTACK: Suspicion of DDoS attack\n\
+        \  - WRONG_DESTINATION_ADDRESS: Wrong destination address\n  - TOO_FREQUENT_SERVICE_ACCESS:\
+        \ Too frequent Service Access\n  - UNEXPECTED_RADIO_LINK_FAILURES: Unexpected\
+        \ radio link failures\n  - PING_PONG_ACROSS_CELLS: Ping-ponging across neighbouring\
+        \ cells\n"
+    ExceptionTrend:
+      anyOf:
+      - $ref: '#/components/schemas/ExceptionTrend_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are\n  - UP: Up trend of the exception level.\n\
+        \  - DOWN: Down trend of the exception level.\n  - UNKNOW: Unknown trend of\
+        \ the exception level.\n  - STABLE: Stable trend of the exception level.\n"
+    AdditionalMeasurement:
+      example:
+        ddosAttack:
+          ipv6Addrs:
+          - 2001:db8:85a3::8a2e:370:7334
+          - 2001:db8:85a3::8a2e:370:7334
+          ipv4Addrs:
+          - 198.51.100.1
+          - 198.51.100.1
+        unexpLoc:
+          ncgis:
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          tais:
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          gRanNodeIds:
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ecgis:
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+        unexpFlowTeps:
+        - ethTrafficFilter:
+            destMacAddr: destMacAddr
+            destMacAddrEnd: "{}"
+            sourceMacAddr: "{}"
+            fDir: "{}"
+            ethType: ethType
+            fDesc: fDesc
+            vlanTags:
+            - vlanTags
+            - vlanTags
+            srcMacAddrEnd: "{}"
+          ipTrafficFilter: ipTrafficFilter
+        - ethTrafficFilter:
+            destMacAddr: destMacAddr
+            destMacAddrEnd: "{}"
+            sourceMacAddr: "{}"
+            fDir: "{}"
+            ethType: ethType
+            fDesc: fDesc
+            vlanTags:
+            - vlanTags
+            - vlanTags
+            srcMacAddrEnd: "{}"
+          ipTrafficFilter: ipTrafficFilter
+        wrgDest:
+          ipv6Addrs:
+          - 2001:db8:85a3::8a2e:370:7334
+          - 2001:db8:85a3::8a2e:370:7334
+          ipv4Addrs:
+          - 198.51.100.1
+          - 198.51.100.1
+        unexpWakes:
+        - null
+        - null
+        circums:
+        - locArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          vol: 0
+          freq: 4.678948
+          tm: 2000-01-23T04:56:07.000+00:00
+        - locArea:
+            ncgis:
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            - nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              nrCellId: nrCellId
+            tais:
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - tac: tac
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            gRanNodeIds:
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            - eNbId: eNbId
+              wagfId: wagfId
+              tngfId: tngfId
+              gNbId:
+                bitLength: 23
+                gNBValue: gNBValue
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+              n3IwfId: n3IwfId
+              ngeNbId: ngeNbId
+            ecgis:
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+            - eutraCellId: eutraCellId
+              nid: nid
+              plmnId:
+                mnc: mnc
+                mcc: mcc
+          vol: 0
+          freq: 4.678948
+          tm: 2000-01-23T04:56:07.000+00:00
+      properties:
+        unexpLoc:
+          $ref: '#/components/schemas/NetworkAreaInfo'
+        unexpFlowTeps:
+          items:
+            $ref: '#/components/schemas/IpEthFlowDescription'
+          minItems: 1
+          type: array
+        unexpWakes:
+          items:
+            $ref: '#/components/schemas/DateTime'
+          minItems: 1
+          type: array
+        ddosAttack:
+          $ref: '#/components/schemas/AddressList'
+        wrgDest:
+          $ref: '#/components/schemas/AddressList'
+        circums:
+          items:
+            $ref: '#/components/schemas/CircumstanceDescription'
+          minItems: 1
+          type: array
+      type: object
+    AddressList:
+      example:
+        ipv6Addrs:
+        - 2001:db8:85a3::8a2e:370:7334
+        - 2001:db8:85a3::8a2e:370:7334
+        ipv4Addrs:
+        - 198.51.100.1
+        - 198.51.100.1
+      properties:
+        ipv4Addrs:
+          items:
+            $ref: '#/components/schemas/Ipv4Addr'
+          minItems: 1
+          type: array
+        ipv6Addrs:
+          items:
+            $ref: '#/components/schemas/Ipv6Addr'
+          minItems: 1
+          type: array
+      type: object
+    CircumstanceDescription:
+      example:
+        locArea:
+          ncgis:
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          - nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          tais:
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          gRanNodeIds:
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          - eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ecgis:
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          - eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+        vol: 0
+        freq: 4.678948
+        tm: 2000-01-23T04:56:07.000+00:00
+      properties:
+        freq:
+          format: float
+          type: number
+        tm:
+          format: date-time
+          type: string
+        locArea:
+          $ref: '#/components/schemas/NetworkAreaInfo'
+        vol:
+          description: Unsigned integer identifying a volume in units of bytes.
+          format: int64
+          minimum: 0
+          type: integer
+      type: object
+    AnySlice:
+      description: FALSE represents not applicable for all slices. TRUE represents
+        applicable for all slices.
+      type: boolean
+    Snssai:
+      example:
+        sd: sd
+        sst: 153
+      properties:
+        sst:
+          maximum: 255
+          minimum: 0
+          type: integer
+        sd:
+          pattern: "^[A-Fa-f0-9]{6}$"
+          type: string
+      required:
+      - sst
+      type: object
+    ApplicationId:
+      type: string
+    Dnn:
+      type: string
+    Dnai:
+      type: string
+    NetworkAreaInfo:
+      description: Describes a network area information in which the NF service consumer
+        requests the number of UEs.
+      example:
+        ncgis:
+        - nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          nrCellId: nrCellId
+        - nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          nrCellId: nrCellId
+        tais:
+        - tac: tac
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+        - tac: tac
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+        gRanNodeIds:
+        - eNbId: eNbId
+          wagfId: wagfId
+          tngfId: tngfId
+          gNbId:
+            bitLength: 23
+            gNBValue: gNBValue
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          n3IwfId: n3IwfId
+          ngeNbId: ngeNbId
+        - eNbId: eNbId
+          wagfId: wagfId
+          tngfId: tngfId
+          gNbId:
+            bitLength: 23
+            gNBValue: gNBValue
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          n3IwfId: n3IwfId
+          ngeNbId: ngeNbId
+        ecgis:
+        - eutraCellId: eutraCellId
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+        - eutraCellId: eutraCellId
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+      properties:
+        ecgis:
+          description: Contains a list of E-UTRA cell identities.
+          items:
+            $ref: '#/components/schemas/Ecgi'
+          minItems: 1
+          type: array
+        ncgis:
+          description: Contains a list of NR cell identities.
+          items:
+            $ref: '#/components/schemas/Ncgi'
+          minItems: 1
+          type: array
+        gRanNodeIds:
+          description: Contains a list of NG RAN nodes.
+          items:
+            $ref: '#/components/schemas/GlobalRanNodeId'
+          minItems: 1
+          type: array
+        tais:
+          description: Contains a list of tracking area identities.
+          items:
+            $ref: '#/components/schemas/Tai'
+          minItems: 1
+          type: array
+      type: object
+    NfInstanceId:
+      format: uuid
+      type: string
+    NfSetId:
+      type: string
+    NFType:
+      anyOf:
+      - $ref: '#/components/schemas/NFType_anyOf'
+      - type: string
+      description: NF types known to NRF
+    NsiIdInfo:
+      description: Represents the S-NSSAI and the optionally associated Network Slice
+        Instance(s).
+      properties:
+        snssai:
+          $ref: '#/components/schemas/Snssai'
+        nsiIds:
+          items:
+            $ref: '#/components/schemas/NsiId'
+          minItems: 1
+          type: array
+      required:
+      - snssai
+      type: object
+    QosRequirement:
+      properties:
+        "5qi":
+          maximum: 255
+          minimum: 0
+          type: integer
+        gfbrUl:
+          pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+          type: string
+        gfbrDl:
+          pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+          type: string
+        resType:
+          $ref: '#/components/schemas/QosResourceType'
+        pdb:
+          minimum: 1
+          type: integer
+        per:
+          pattern: "^([0-9]E-[0-9])$"
+          type: string
+      type: object
+    BwRequirement:
+      properties:
+        appId:
+          type: string
+        marBwDl:
+          pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+          type: string
+        marBwUl:
+          pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+          type: string
+        mirBwDl:
+          pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+          type: string
+        mirBwUl:
+          pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+          type: string
+      required:
+      - appId
+      type: object
+    ExpectedAnalyticsType:
+      anyOf:
+      - $ref: '#/components/schemas/ExpectedAnalyticsType_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are\n  - MOBILITY: Mobility related abnormal behaviour\
+        \ analytics is expected by the consumer.\n  - COMMUN: Communication related\
+        \ abnormal behaviour analytics is expected by the consumer.\n  - MOBILITY_AND_COMMUN:\
+        \ Both mobility and communication related abnormal behaviour analytics is\
+        \ expected by the consumer.\n"
+    ExpectedUeBehaviourData:
+      properties:
+        stationaryIndication:
+          $ref: '#/components/schemas/StationaryIndication'
+        communicationDurationTime:
+          type: integer
+        periodicTime:
+          type: integer
+        scheduledCommunicationTime:
+          $ref: '#/components/schemas/ScheduledCommunicationTime_1'
+        scheduledCommunicationType:
+          $ref: '#/components/schemas/ScheduledCommunicationType'
+        expectedUmts:
+          description: Identifies the UE's expected geographical movement. The attribute
+            is only applicable in 5G.
+          items:
+            $ref: '#/components/schemas/LocationArea'
+          minItems: 1
+          type: array
+        trafficProfile:
+          $ref: '#/components/schemas/TrafficProfile'
+        batteryIndication:
+          $ref: '#/components/schemas/BatteryIndication'
+        validityTime:
+          format: date-time
+          type: string
+      type: object
+    SamplingRatio:
+      maximum: 100
+      minimum: 1
+      type: integer
+    Uinteger:
+      minimum: 0
+      type: integer
+    Supi:
+      pattern: "^(imsi-[0-9]{5,15}|nai-.+|gci-.+|gli-.+|.+)$"
+      type: string
+    GroupId:
+      pattern: "^[A-Fa-f0-9]{8}-[0-9]{3}-[0-9]{2,3}-([A-Fa-f0-9][A-Fa-f0-9]){1,10}$"
+      type: string
+    AccessTokenErr:
+      description: Error returned in the access token response message
+      properties:
+        error:
+          enum:
+          - invalid_request
+          - invalid_client
+          - invalid_grant
+          - unauthorized_client
+          - unsupported_grant_type
+          - invalid_scope
+          type: string
+        error_description:
+          type: string
+        error_uri:
+          type: string
+      required:
+      - error
+      type: object
+    AccessTokenReq:
+      description: Contains information related to the access token request
+      properties:
+        grant_type:
+          enum:
+          - client_credentials
+          type: string
+        nfInstanceId:
+          format: uuid
+          type: string
+        nfType:
+          $ref: '#/components/schemas/NFType'
+        targetNfType:
+          $ref: '#/components/schemas/NFType'
+        scope:
+          pattern: "^([a-zA-Z0-9_:-]+)( [a-zA-Z0-9_:-]+)*$"
+          type: string
+        targetNfInstanceId:
+          format: uuid
+          type: string
+        requesterPlmn:
+          $ref: '#/components/schemas/PlmnId'
+        requesterPlmnList:
+          items:
+            $ref: '#/components/schemas/PlmnId'
+          minItems: 2
+          type: array
+        requesterSnssaiList:
+          items:
+            $ref: '#/components/schemas/Snssai'
+          minItems: 1
+          type: array
+        requesterFqdn:
+          description: Fully Qualified Domain Name
+          type: string
+        requesterSnpnList:
+          items:
+            $ref: '#/components/schemas/PlmnIdNid'
+          minItems: 1
+          type: array
+        targetPlmn:
+          $ref: '#/components/schemas/PlmnId'
+        targetSnssaiList:
+          items:
+            $ref: '#/components/schemas/Snssai'
+          minItems: 1
+          type: array
+        targetNsiList:
+          items:
+            type: string
+          minItems: 1
+          type: array
+        targetNfSetId:
+          type: string
+        targetNfServiceSetId:
+          type: string
+      required:
+      - grant_type
+      - nfInstanceId
+      - scope
+      type: object
+    NsiId:
+      type: string
+    SvcExperience:
+      example:
+        mos: 7.4577446
+        lowerRange: 4.9652185
+        upperRange: 1.1730742
+      properties:
+        mos:
+          format: float
+          type: number
+        upperRange:
+          format: float
+          type: number
+        lowerRange:
+          format: float
+          type: number
+      type: object
+    Float:
+      format: float
+      type: number
+    BitRate:
+      pattern: ^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$
+      type: string
+    ScheduledCommunicationTime:
+      example:
+        timeOfDayEnd: timeOfDayEnd
+        daysOfWeek:
+        - null
+        - null
+        - null
+        - null
+        - null
+        timeOfDayStart: timeOfDayStart
+      properties:
+        daysOfWeek:
+          description: "Identifies the day(s) of the week. If absent, it indicates\
+            \ every day of the week."
+          items:
+            $ref: '#/components/schemas/DayOfWeek'
+          maxItems: 6
+          minItems: 1
+          type: array
+        timeOfDayStart:
+          description: "String with format partial-time or full-time as defined in\
+            \ subclause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for\
+            \ 8 hours behind UTC)."
+          type: string
+        timeOfDayEnd:
+          description: "String with format partial-time or full-time as defined in\
+            \ subclause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for\
+            \ 8 hours behind UTC)."
+          type: string
+      type: object
+    DurationSec:
+      type: integer
+    UserLocation:
+      example:
+        geraLocation:
+          geographicalInformation: geographicalInformation
+          ageOfLocationInformation: 22537
+          cgi:
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            cellId: cellId
+            lac: lac
+          lai:
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            lac: lac
+          mscNumber: mscNumber
+          sai:
+            sac: sac
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            lac: lac
+          rai:
+            rac: rac
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            lac: lac
+          vlrNumber: vlrNumber
+          locationNumber: locationNumber
+          ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+          geodeticInformation: geodeticInformation
+        eutraLocation:
+          geographicalInformation: geographicalInformation
+          globalNgenbId:
+            eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ageOfLocationInformation: 22822
+          ignoreEcgi: false
+          globalENbId:
+            eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          tai:
+            tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          ignoreTai: false
+          ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+          geodeticInformation: geodeticInformation
+          ecgi:
+            eutraCellId: eutraCellId
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+        nrLocation:
+          ignoreNcgi: false
+          geographicalInformation: geographicalInformation
+          globalGnbId:
+            eNbId: eNbId
+            wagfId: wagfId
+            tngfId: tngfId
+            gNbId:
+              bitLength: 23
+              gNBValue: gNBValue
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            n3IwfId: n3IwfId
+            ngeNbId: ngeNbId
+          ageOfLocationInformation: 4209
+          ncgi:
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            nrCellId: nrCellId
+          tai:
+            tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+          geodeticInformation: geodeticInformation
+        n3gaLocation:
+          ueIpv4Addr: 198.51.100.1
+          twapId:
+            bssId: bssId
+            civicAddress: civicAddress
+            ssId: ssId
+          hfcNodeId:
+            hfcNId: hfcNId
+          protocol: null
+          gli: gli
+          n3gppTai:
+            tac: tac
+            nid: nid
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+          tnapId:
+            bssId: bssId
+            civicAddress: civicAddress
+            ssId: ssId
+          w5gbanLineType: null
+          ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+          gci: gci
+          n3IwfId: n3IwfId
+          portNumber: 0
+        utraLocation:
+          geographicalInformation: geographicalInformation
+          ageOfLocationInformation: 22210
+          cgi:
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            cellId: cellId
+            lac: lac
+          lai:
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            lac: lac
+          sai:
+            sac: sac
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            lac: lac
+          rai:
+            rac: rac
+            plmnId:
+              mnc: mnc
+              mcc: mcc
+            lac: lac
+          ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+          geodeticInformation: geodeticInformation
+      properties:
+        eutraLocation:
+          $ref: '#/components/schemas/EutraLocation'
+        nrLocation:
+          $ref: '#/components/schemas/NrLocation'
+        n3gaLocation:
+          $ref: '#/components/schemas/N3gaLocation'
+        utraLocation:
+          $ref: '#/components/schemas/UtraLocation'
+        geraLocation:
+          $ref: '#/components/schemas/GeraLocation'
+      type: object
+    EutraLocation:
+      example:
+        geographicalInformation: geographicalInformation
+        globalNgenbId:
+          eNbId: eNbId
+          wagfId: wagfId
+          tngfId: tngfId
+          gNbId:
+            bitLength: 23
+            gNBValue: gNBValue
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          n3IwfId: n3IwfId
+          ngeNbId: ngeNbId
+        ageOfLocationInformation: 22822
+        ignoreEcgi: false
+        globalENbId:
+          eNbId: eNbId
+          wagfId: wagfId
+          tngfId: tngfId
+          gNbId:
+            bitLength: 23
+            gNBValue: gNBValue
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          n3IwfId: n3IwfId
+          ngeNbId: ngeNbId
+        tai:
+          tac: tac
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+        ignoreTai: false
+        ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+        geodeticInformation: geodeticInformation
+        ecgi:
+          eutraCellId: eutraCellId
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+      properties:
+        tai:
+          $ref: '#/components/schemas/Tai'
+        ignoreTai:
+          default: false
+          type: boolean
+        ecgi:
+          $ref: '#/components/schemas/Ecgi'
+        ignoreEcgi:
+          default: false
+          type: boolean
+        ageOfLocationInformation:
+          maximum: 32767
+          minimum: 0
+          type: integer
+        ueLocationTimestamp:
+          format: date-time
+          type: string
+        geographicalInformation:
+          pattern: "^[0-9A-F]{16}$"
+          type: string
+        geodeticInformation:
+          pattern: "^[0-9A-F]{20}$"
+          type: string
+        globalNgenbId:
+          $ref: '#/components/schemas/GlobalRanNodeId'
+        globalENbId:
+          $ref: '#/components/schemas/GlobalRanNodeId'
+      required:
+      - ecgi
+      - tai
+      type: object
+    Tai:
+      example:
+        tac: tac
+        nid: nid
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        tac:
+          pattern: "(^[A-Fa-f0-9]{4}$)|(^[A-Fa-f0-9]{6}$)"
+          type: string
+        nid:
+          pattern: "^[A-Fa-f0-9]{11}$"
+          type: string
+      required:
+      - plmnId
+      - tac
+      type: object
+    PlmnId:
+      example:
+        mnc: mnc
+        mcc: mcc
+      properties:
+        mcc:
+          pattern: "^\\d{3}$"
+          type: string
+        mnc:
+          pattern: "^\\d{2,3}$"
+          type: string
+      required:
+      - mcc
+      - mnc
+      type: object
+    Mcc:
+      pattern: "^\\d{3}$"
+      type: string
+    Mnc:
+      pattern: "^\\d{2,3}$"
+      type: string
+    Tac:
+      pattern: "(^[A-Fa-f0-9]{4}$)|(^[A-Fa-f0-9]{6}$)"
+      type: string
+    Nid:
+      pattern: "^[A-Fa-f0-9]{11}$"
+      type: string
+    Ecgi:
+      example:
+        eutraCellId: eutraCellId
+        nid: nid
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        eutraCellId:
+          pattern: "^[A-Fa-f0-9]{7}$"
+          type: string
+        nid:
+          pattern: "^[A-Fa-f0-9]{11}$"
+          type: string
+      required:
+      - eutraCellId
+      - plmnId
+      type: object
+    EutraCellId:
+      pattern: "^[A-Fa-f0-9]{7}$"
+      type: string
+    GlobalRanNodeId:
+      example:
+        eNbId: eNbId
+        wagfId: wagfId
+        tngfId: tngfId
+        gNbId:
+          bitLength: 23
+          gNBValue: gNBValue
+        nid: nid
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+        n3IwfId: n3IwfId
+        ngeNbId: ngeNbId
+      oneOf:
+      - required:
+        - n3IwfId
+      - required:
+        - gNbId
+      - required:
+        - ngeNbId
+      - required:
+        - wagfId
+      - required:
+        - tngfId
+      - required:
+        - eNbId
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        n3IwfId:
+          pattern: "^[A-Fa-f0-9]+$"
+          type: string
+        gNbId:
+          $ref: '#/components/schemas/GNbId'
+        ngeNbId:
+          pattern: "^(MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$"
+          type: string
+        wagfId:
+          pattern: "^[A-Fa-f0-9]+$"
+          type: string
+        tngfId:
+          pattern: "^[A-Fa-f0-9]+$"
+          type: string
+        nid:
+          pattern: "^[A-Fa-f0-9]{11}$"
+          type: string
+        eNbId:
+          pattern: "^(MacroeNB-[A-Fa-f0-9]{5}|LMacroeNB-[A-Fa-f0-9]{6}|SMacroeNB-[A-Fa-f0-9]{5}|HomeeNB-[A-Fa-f0-9]{7})$"
+          type: string
+      required:
+      - plmnId
+      type: object
+    N3IwfId:
+      pattern: "^[A-Fa-f0-9]+$"
+      type: string
+    GNbId:
+      example:
+        bitLength: 23
+        gNBValue: gNBValue
+      properties:
+        bitLength:
+          maximum: 32
+          minimum: 22
+          type: integer
+        gNBValue:
+          pattern: "^[A-Fa-f0-9]{6,8}$"
+          type: string
+      required:
+      - bitLength
+      - gNBValue
+      type: object
+    NgeNbId:
+      pattern: "^(MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$"
+      type: string
+    WAgfId:
+      pattern: "^[A-Fa-f0-9]+$"
+      type: string
+    TngfId:
+      pattern: "^[A-Fa-f0-9]+$"
+      type: string
+    ENbId:
+      pattern: "^(MacroeNB-[A-Fa-f0-9]{5}|LMacroeNB-[A-Fa-f0-9]{6}|SMacroeNB-[A-Fa-f0-9]{5}|HomeeNB-[A-Fa-f0-9]{7})$"
+      type: string
+    NrLocation:
+      example:
+        ignoreNcgi: false
+        geographicalInformation: geographicalInformation
+        globalGnbId:
+          eNbId: eNbId
+          wagfId: wagfId
+          tngfId: tngfId
+          gNbId:
+            bitLength: 23
+            gNBValue: gNBValue
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          n3IwfId: n3IwfId
+          ngeNbId: ngeNbId
+        ageOfLocationInformation: 4209
+        ncgi:
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          nrCellId: nrCellId
+        tai:
+          tac: tac
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+        ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+        geodeticInformation: geodeticInformation
+      properties:
+        tai:
+          $ref: '#/components/schemas/Tai'
+        ncgi:
+          $ref: '#/components/schemas/Ncgi'
+        ignoreNcgi:
+          default: false
+          type: boolean
+        ageOfLocationInformation:
+          maximum: 32767
+          minimum: 0
+          type: integer
+        ueLocationTimestamp:
+          format: date-time
+          type: string
+        geographicalInformation:
+          pattern: "^[0-9A-F]{16}$"
+          type: string
+        geodeticInformation:
+          pattern: "^[0-9A-F]{20}$"
+          type: string
+        globalGnbId:
+          $ref: '#/components/schemas/GlobalRanNodeId'
+      required:
+      - ncgi
+      - tai
+      type: object
+    Ncgi:
+      example:
+        nid: nid
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+        nrCellId: nrCellId
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        nrCellId:
+          pattern: "^[A-Fa-f0-9]{9}$"
+          type: string
+        nid:
+          pattern: "^[A-Fa-f0-9]{11}$"
+          type: string
+      required:
+      - nrCellId
+      - plmnId
+      type: object
+    NrCellId:
+      pattern: "^[A-Fa-f0-9]{9}$"
+      type: string
+    N3gaLocation:
+      example:
+        ueIpv4Addr: 198.51.100.1
+        twapId:
+          bssId: bssId
+          civicAddress: civicAddress
+          ssId: ssId
+        hfcNodeId:
+          hfcNId: hfcNId
+        protocol: null
+        gli: gli
+        n3gppTai:
+          tac: tac
+          nid: nid
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+        tnapId:
+          bssId: bssId
+          civicAddress: civicAddress
+          ssId: ssId
+        w5gbanLineType: null
+        ueIpv6Addr: 2001:db8:85a3::8a2e:370:7334
+        gci: gci
+        n3IwfId: n3IwfId
+        portNumber: 0
+      properties:
+        n3gppTai:
+          $ref: '#/components/schemas/Tai'
+        n3IwfId:
+          pattern: "^[A-Fa-f0-9]+$"
+          type: string
+        ueIpv4Addr:
+          example: 198.51.100.1
+          pattern: "^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$"
+          type: string
+        ueIpv6Addr:
+          $ref: '#/components/schemas/Ipv6Addr'
+        portNumber:
+          minimum: 0
+          type: integer
+        tnapId:
+          $ref: '#/components/schemas/TnapId'
+        protocol:
+          $ref: '#/components/schemas/TransportProtocol'
+        twapId:
+          $ref: '#/components/schemas/TwapId'
+        hfcNodeId:
+          $ref: '#/components/schemas/HfcNodeId'
+        gli:
+          format: byte
+          type: string
+        w5gbanLineType:
+          $ref: '#/components/schemas/LineType'
+        gci:
+          type: string
+      type: object
+    Ipv4Addr:
+      example: 198.51.100.1
+      pattern: "^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$"
+      type: string
+    Ipv6Addr:
+      allOf:
+      - pattern: "^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))$"
+      - pattern: "^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))$"
+      example: 2001:db8:85a3::8a2e:370:7334
+      type: string
+    TnapId:
+      example:
+        bssId: bssId
+        civicAddress: civicAddress
+        ssId: ssId
+      properties:
+        ssId:
+          type: string
+        bssId:
+          type: string
+        civicAddress:
+          format: byte
+          type: string
+      type: object
+    Bytes:
+      format: byte
+      type: string
+    TransportProtocol:
+      anyOf:
+      - $ref: '#/components/schemas/TransportProtocol_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - UDP: User Datagram Protocol. - TCP: Transmission\
+        \ Control Protocol.\n"
+    TwapId:
+      example:
+        bssId: bssId
+        civicAddress: civicAddress
+        ssId: ssId
+      properties:
+        ssId:
+          type: string
+        bssId:
+          type: string
+        civicAddress:
+          format: byte
+          type: string
+      required:
+      - ssId
+      type: object
+    HfcNodeId:
+      example:
+        hfcNId: hfcNId
+      properties:
+        hfcNId:
+          maxLength: 6
+          type: string
+      required:
+      - hfcNId
+      type: object
+    HfcNId:
+      maxLength: 6
+      type: string
+    Gli:
+      $ref: '#/components/schemas/Bytes'
+    LineType:
+      anyOf:
+      - $ref: '#/components/schemas/LineType_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - DSL: Identifies a DSL line - PON: Identifies\
+        \ a PON line\n"
+    Gci:
+      type: string
+    UtraLocation:
+      example:
+        geographicalInformation: geographicalInformation
+        ageOfLocationInformation: 22210
+        cgi:
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          cellId: cellId
+          lac: lac
+        lai:
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          lac: lac
+        sai:
+          sac: sac
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          lac: lac
+        rai:
+          rac: rac
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          lac: lac
+        ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+        geodeticInformation: geodeticInformation
+      oneOf:
+      - required:
+        - cgi
+      - required:
+        - sai
+      - required:
+        - rai
+      properties:
+        cgi:
+          $ref: '#/components/schemas/CellGlobalId'
+        sai:
+          $ref: '#/components/schemas/ServiceAreaId'
+        lai:
+          $ref: '#/components/schemas/LocationAreaId'
+        rai:
+          $ref: '#/components/schemas/RoutingAreaId'
+        ageOfLocationInformation:
+          maximum: 32767
+          minimum: 0
+          type: integer
+        ueLocationTimestamp:
+          format: date-time
+          type: string
+        geographicalInformation:
+          pattern: "^[0-9A-F]{16}$"
+          type: string
+        geodeticInformation:
+          pattern: "^[0-9A-F]{20}$"
+          type: string
+      type: object
+    CellGlobalId:
+      example:
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+        cellId: cellId
+        lac: lac
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        lac:
+          pattern: "^[A-Fa-f0-9]{4}$"
+          type: string
+        cellId:
+          pattern: "^[A-Fa-f0-9]{4}$"
+          type: string
+      required:
+      - cellId
+      - lac
+      - plmnId
+      type: object
+    ServiceAreaId:
+      example:
+        sac: sac
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+        lac: lac
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        lac:
+          pattern: "^[A-Fa-f0-9]{4}$"
+          type: string
+        sac:
+          pattern: "^[A-Fa-f0-9]{4}$"
+          type: string
+      required:
+      - lac
+      - plmnId
+      - sac
+      type: object
+    LocationAreaId:
+      example:
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+        lac: lac
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        lac:
+          pattern: "^[A-Fa-f0-9]{4}$"
+          type: string
+      required:
+      - lac
+      - plmnId
+      type: object
+    RoutingAreaId:
+      example:
+        rac: rac
+        plmnId:
+          mnc: mnc
+          mcc: mcc
+        lac: lac
+      properties:
+        plmnId:
+          $ref: '#/components/schemas/PlmnId'
+        lac:
+          pattern: "^[A-Fa-f0-9]{4}$"
+          type: string
+        rac:
+          pattern: "^[A-Fa-f0-9]{2}$"
+          type: string
+      required:
+      - lac
+      - plmnId
+      - rac
+      type: object
+    GeraLocation:
+      example:
+        geographicalInformation: geographicalInformation
+        ageOfLocationInformation: 22537
+        cgi:
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          cellId: cellId
+          lac: lac
+        lai:
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          lac: lac
+        mscNumber: mscNumber
+        sai:
+          sac: sac
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          lac: lac
+        rai:
+          rac: rac
+          plmnId:
+            mnc: mnc
+            mcc: mcc
+          lac: lac
+        vlrNumber: vlrNumber
+        locationNumber: locationNumber
+        ueLocationTimestamp: 2000-01-23T04:56:07.000+00:00
+        geodeticInformation: geodeticInformation
+      oneOf:
+      - required:
+        - cgi
+      - required:
+        - sai
+      - required:
+        - rai
+      - required:
+        - lai
+      properties:
+        locationNumber:
+          type: string
+        cgi:
+          $ref: '#/components/schemas/CellGlobalId'
+        rai:
+          $ref: '#/components/schemas/RoutingAreaId'
+        sai:
+          $ref: '#/components/schemas/ServiceAreaId'
+        lai:
+          $ref: '#/components/schemas/LocationAreaId'
+        vlrNumber:
+          type: string
+        mscNumber:
+          type: string
+        ageOfLocationInformation:
+          maximum: 32767
+          minimum: 0
+          type: integer
+        ueLocationTimestamp:
+          format: date-time
+          type: string
+        geographicalInformation:
+          pattern: "^[0-9A-F]{16}$"
+          type: string
+        geodeticInformation:
+          pattern: "^[0-9A-F]{20}$"
+          type: string
+      type: object
+    Volume:
+      description: Unsigned integer identifying a volume in units of bytes.
+      format: int64
+      minimum: 0
+      type: integer
+    FlowDescription:
+      description: Defines a packet filter of an IP flow.
+      type: string
+    EthFlowDescription:
+      description: Identifies an Ethernet flow
+      example:
+        destMacAddr: destMacAddr
+        destMacAddrEnd: "{}"
+        sourceMacAddr: "{}"
+        fDir: "{}"
+        ethType: ethType
+        fDesc: fDesc
+        vlanTags:
+        - vlanTags
+        - vlanTags
+        srcMacAddrEnd: "{}"
+      properties:
+        destMacAddr:
+          pattern: "^([0-9a-fA-F]{2})((-[0-9a-fA-F]{2}){5})$"
+          type: string
+        ethType:
+          type: string
+        fDesc:
+          description: Defines a packet filter of an IP flow.
+          type: string
+        fDir:
+          $ref: ./TS29512_Npcf_SMPolicyControl.yaml#/components/schemas/FlowDirection
+        sourceMacAddr:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/MacAddr48
+        vlanTags:
+          items:
+            type: string
+          maxItems: 2
+          minItems: 1
+          type: array
+        srcMacAddrEnd:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/MacAddr48
+        destMacAddrEnd:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/MacAddr48
+      required:
+      - ethType
+      type: object
+    TimeWindow:
+      example:
+        startTime: "{}"
+        stopTime: "{}"
+      properties:
+        startTime:
+          $ref: ./TS29122_CommonData.yaml#/components/schemas/DateTime
+        stopTime:
+          $ref: ./TS29122_CommonData.yaml#/components/schemas/DateTime
+      required:
+      - startTime
+      - stopTime
+      type: object
+    DateTime_1:
+      description: string with format "date-time" as defined in OpenAPI.
+      type: string
+    "5Qi":
+      maximum: 255
+      minimum: 0
+      type: integer
+    QosResourceType:
+      anyOf:
+      - $ref: '#/components/schemas/QosResourceType_anyOf'
+      - type: string
+    PacketDelBudget:
+      minimum: 1
+      type: integer
+    PacketErrRate:
+      pattern: "^([0-9]E-[0-9])$"
+      type: string
+    StationaryIndication:
+      anyOf:
+      - $ref: '#/components/schemas/StationaryIndication_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - STATIONARY: Identifies the UE is stationary\
+        \ - MOBILE: Identifies the UE is mobile\n"
+    ScheduledCommunicationTime_1:
+      properties:
+        daysOfWeek:
+          description: "Identifies the day(s) of the week. If absent, it indicates\
+            \ every day of the week."
+          items:
+            $ref: '#/components/schemas/DayOfWeek'
+          maxItems: 6
+          minItems: 1
+          type: array
+        timeOfDayStart:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/TimeOfDay
+        timeOfDayEnd:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/TimeOfDay
+      type: object
+    DayOfWeek:
+      description: "integer between and including 1 and 7 denoting a weekday. 1 shall\
+        \ indicate Monday, and the subsequent weekdays shall be indicated with the\
+        \ next higher numbers. 7 shall indicate Sunday."
+      maximum: 7
+      minimum: 1
+      type: integer
+    TimeOfDay:
+      description: "String with format partial-time or full-time as defined in clause\
+        \ 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind\
+        \ UTC)."
+      type: string
+    ScheduledCommunicationType:
+      anyOf:
+      - $ref: '#/components/schemas/ScheduledCommunicationType_anyOf'
+      - type: string
+    LocationArea:
+      properties:
+        geographicAreas:
+          description: Identifies a list of geographic area of the user where the
+            UE is located.
+          items:
+            $ref: ./TS29572_Nlmf_Location.yaml#/components/schemas/GeographicArea
+          minItems: 0
+          type: array
+        civicAddresses:
+          description: Identifies a list of civic addresses of the user where the
+            UE is located.
+          items:
+            $ref: ./TS29572_Nlmf_Location.yaml#/components/schemas/CivicAddress
+          minItems: 0
+          type: array
+        nwAreaInfo:
+          $ref: ./TS29503_Nudm_PP.yaml#/components/schemas/NetworkAreaInfo
+      type: object
+    NetworkAreaInfo_1:
+      description: Describes a network area information in which the NF service consumer
+        requests the number of UEs.
+      properties:
+        ecgis:
+          description: Contains a list of E-UTRA cell identities.
+          items:
+            $ref: ./TS29571_CommonData.yaml#/components/schemas/Ecgi
+          minItems: 1
+          type: array
+        ncgis:
+          description: Contains a list of NR cell identities.
+          items:
+            $ref: ./TS29571_CommonData.yaml#/components/schemas/Ncgi
+          minItems: 1
+          type: array
+        gRanNodeIds:
+          description: Contains a list of NG RAN nodes.
+          items:
+            $ref: ./TS29571_CommonData.yaml#/components/schemas/GlobalRanNodeId
+          minItems: 1
+          type: array
+        tais:
+          description: Contains a list of tracking area identities.
+          items:
+            $ref: ./TS29571_CommonData.yaml#/components/schemas/Tai
+          minItems: 1
+          type: array
+      type: object
+    TrafficProfile:
+      anyOf:
+      - $ref: '#/components/schemas/TrafficProfile_anyOf'
+      - description: |
+          This string provides forward-compatibility with future extensions to the enumeration but is not used to encode content defined in the present version of this API.
+        type: string
+      description: "Possible values are - SINGLE_TRANS_UL: Uplink single packet transmission.\
+        \ - SINGLE_TRANS_DL: Downlink single packet transmission. - DUAL_TRANS_UL_FIRST:\
+        \ Dual packet transmission, firstly uplink packet transmission with subsequent\
+        \ downlink packet transmission. - DUAL_TRANS_DL_FIRST: Dual packet transmission,\
+        \ firstly downlink packet transmission with subsequent uplink packet transmission.\n"
+    BatteryIndication:
+      properties:
+        batteryInd:
+          type: boolean
+        replaceableInd:
+          type: boolean
+        rechargeableInd:
+          type: boolean
+      type: object
+    Fqdn:
+      description: Fully Qualified Domain Name
+      type: string
+    PlmnIdNid:
+      properties:
+        mcc:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/Mcc
+        mnc:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/Mnc
+        nid:
+          $ref: ./TS29571_CommonData.yaml#/components/schemas/Nid
+      required:
+      - mcc
+      - mnc
+      type: object
+    NfServiceSetId:
+      type: string
+    TimeOfDay_1:
+      description: "String with format partial-time or full-time as defined in subclause\
+        \ 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind\
+        \ UTC)."
+      type: string
+    MacAddr48:
+      pattern: "^([0-9a-fA-F]{2})((-[0-9a-fA-F]{2}){5})$"
+      type: string
+    EventId_anyOf:
+      enum:
+      - LOAD_LEVEL_INFORMATION
+      - NETWORK_PERFORMANCE
+      - NF_LOAD
+      - SERVICE_EXPERIENCE
+      - UE_MOBILITY
+      - UE_COMMUNICATION
+      - QOS_SUSTAINABILITY
+      - ABNORMAL_BEHAVIOUR
+      - USER_DATA_CONGESTION
+      - NSI_LOAD_LEVEL
+      type: string
+    Accuracy_anyOf:
+      enum:
+      - LOW
+      - HIGH
+      type: string
+    NetworkPerfType_anyOf:
+      enum:
+      - GNB_ACTIVE_RATIO
+      - GNB_COMPUTING_USAGE
+      - GNB_MEMORY_USAGE
+      - GNB_DISK_USAGE
+      - NUM_OF_UE
+      - SESS_SUCC_RATIO
+      - HO_SUCC_RATIO
+      type: string
+    TimeUnit_anyOf:
+      enum:
+      - MINUTE
+      - HOUR
+      - DAY
+      type: string
+    CongestionType_anyOf:
+      enum:
+      - USER_PLANE
+      - CONTROL_PLANE
+      - USER_AND_CONTROL_PLANE
+      type: string
+    ExceptionId_anyOf:
+      enum:
+      - UNEXPECTED_UE_LOCATION
+      - UNEXPECTED_LONG_LIVE_FLOW
+      - UNEXPECTED_LARGE_RATE_FLOW
+      - UNEXPECTED_WAKEUP
+      - SUSPICION_OF_DDOS_ATTACK
+      - WRONG_DESTINATION_ADDRESS
+      - TOO_FREQUENT_SERVICE_ACCESS
+      - UNEXPECTED_RADIO_LINK_FAILURES
+      - PING_PONG_ACROSS_CELLS
+      type: string
+    ExceptionTrend_anyOf:
+      enum:
+      - UP
+      - DOWN
+      - UNKNOW
+      - STABLE
+      type: string
+    NFType_anyOf:
+      enum:
+      - NRF
+      - UDM
+      - AMF
+      - SMF
+      - AUSF
+      - NEF
+      - PCF
+      - SMSF
+      - NSSF
+      - UDR
+      - LMF
+      - GMLC
+      - 5G_EIR
+      - SEPP
+      - UPF
+      - N3IWF
+      - AF
+      - UDSF
+      - BSF
+      - CHF
+      - NWDAF
+      - PCSCF
+      - CBCF
+      - HSS
+      - UCMF
+      - SOR_AF
+      - SPAF
+      - MME
+      - SCSAS
+      - SCEF
+      - SCP
+      - NSSAAF
+      - ICSCF
+      - SCSCF
+      - DRA
+      - IMS_AS
+      - CEF
+      type: string
+    ExpectedAnalyticsType_anyOf:
+      enum:
+      - MOBILITY
+      - COMMUN
+      - MOBILITY_AND_COMMUN
+      type: string
+    TransportProtocol_anyOf:
+      enum:
+      - UDP
+      - TCP
+      type: string
+    LineType_anyOf:
+      enum:
+      - DSL
+      - PON
+      type: string
+    QosResourceType_anyOf:
+      enum:
+      - NON_GBR
+      - NON_CRITICAL_GBR
+      - CRITICAL_GBR
+      type: string
+    StationaryIndication_anyOf:
+      enum:
+      - STATIONARY
+      - MOBILE
+      type: string
+    ScheduledCommunicationType_anyOf:
+      enum:
+      - DOWNLINK_ONLY
+      - UPLINK_ONLY
+      - BIDIRECTIONAL
+      type: string
+    TrafficProfile_anyOf:
+      enum:
+      - SINGLE_TRANS_UL
+      - SINGLE_TRANS_DL
+      - DUAL_TRANS_UL_FIRST
+      - DUAL_TRANS_DL_FIRST
+      - MULTI_TRANS
+      type: string
+  securitySchemes:
+    oAuth2ClientCredentials:
+      flows:
+        clientCredentials:
+          scopes:
+            nnwdaf-analyticsinfo: Access to the Nnwdaf_AnalyticsInfo API
+          tokenUrl: "{nrfApiRoot}/oauth2/token"
+      type: oauth2
