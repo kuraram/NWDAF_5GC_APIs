@@ -5,17 +5,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **N3gppTai** | Pointer to [**Tai**](Tai.md) |  | [optional] 
-**N3IwfId** | Pointer to **string** |  | [optional] 
-**UeIpv4Addr** | Pointer to **string** |  | [optional] 
+**N3IwfId** | Pointer to **string** | This IE shall contain the N3IWF identifier received over NGAP and shall be encoded as a  string of hexadecimal characters. Each character in the string shall take a value of \&quot;0\&quot;  to \&quot;9\&quot;, \&quot;a\&quot; to \&quot;f\&quot; or \&quot;A\&quot; to \&quot;F\&quot; and shall represent 4 bits. The most significant  character representing the 4 most significant bits of the N3IWF ID shall appear first in  the string, and the character representing the 4 least significant bit of the N3IWF ID  shall appear last in the string.   | [optional] 
+**UeIpv4Addr** | Pointer to **string** | String identifying a IPv4 address formatted in the &#39;dotted decimal&#39; notation as defined in RFC 1166. | [optional] 
 **UeIpv6Addr** | Pointer to [**Ipv6Addr**](Ipv6Addr.md) |  | [optional] 
-**PortNumber** | Pointer to **int32** |  | [optional] 
-**TnapId** | Pointer to [**TnapId**](TnapId.md) |  | [optional] 
+**PortNumber** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
 **Protocol** | Pointer to [**TransportProtocol**](TransportProtocol.md) |  | [optional] 
+**TnapId** | Pointer to [**TnapId**](TnapId.md) |  | [optional] 
 **TwapId** | Pointer to [**TwapId**](TwapId.md) |  | [optional] 
 **HfcNodeId** | Pointer to [**HfcNodeId**](HfcNodeId.md) |  | [optional] 
-**Gli** | Pointer to **string** |  | [optional] 
+**Gli** | Pointer to **string** | string with format &#39;bytes&#39; as defined in OpenAPI | [optional] 
 **W5gbanLineType** | Pointer to [**LineType**](LineType.md) |  | [optional] 
-**Gci** | Pointer to **string** |  | [optional] 
+**Gci** | Pointer to **string** | Global Cable Identifier uniquely identifying the connection between the 5G-CRG or FN-CRG to the 5GS. See clause 28.15.4 of 3GPP TS 23.003.  This shall be encoded as a string per clause 28.15.4 of 3GPP TS 23.003, and compliant with the syntax specified  in clause 2.2 of IETF RFC 7542 for the username part of a NAI. The GCI value is specified in CableLabs WR-TR-5WWC-ARCH.  | [optional] 
 
 ## Methods
 
@@ -161,31 +161,6 @@ SetPortNumber sets PortNumber field to given value.
 
 HasPortNumber returns a boolean if a field has been set.
 
-### GetTnapId
-
-`func (o *N3gaLocation) GetTnapId() TnapId`
-
-GetTnapId returns the TnapId field if non-nil, zero value otherwise.
-
-### GetTnapIdOk
-
-`func (o *N3gaLocation) GetTnapIdOk() (*TnapId, bool)`
-
-GetTnapIdOk returns a tuple with the TnapId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTnapId
-
-`func (o *N3gaLocation) SetTnapId(v TnapId)`
-
-SetTnapId sets TnapId field to given value.
-
-### HasTnapId
-
-`func (o *N3gaLocation) HasTnapId() bool`
-
-HasTnapId returns a boolean if a field has been set.
-
 ### GetProtocol
 
 `func (o *N3gaLocation) GetProtocol() TransportProtocol`
@@ -210,6 +185,31 @@ SetProtocol sets Protocol field to given value.
 `func (o *N3gaLocation) HasProtocol() bool`
 
 HasProtocol returns a boolean if a field has been set.
+
+### GetTnapId
+
+`func (o *N3gaLocation) GetTnapId() TnapId`
+
+GetTnapId returns the TnapId field if non-nil, zero value otherwise.
+
+### GetTnapIdOk
+
+`func (o *N3gaLocation) GetTnapIdOk() (*TnapId, bool)`
+
+GetTnapIdOk returns a tuple with the TnapId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTnapId
+
+`func (o *N3gaLocation) SetTnapId(v TnapId)`
+
+SetTnapId sets TnapId field to given value.
+
+### HasTnapId
+
+`func (o *N3gaLocation) HasTnapId() bool`
+
+HasTnapId returns a boolean if a field has been set.
 
 ### GetTwapId
 

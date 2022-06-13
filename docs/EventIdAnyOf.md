@@ -23,6 +23,16 @@
 
 * `NSI_LOAD_LEVEL` (value: `"NSI_LOAD_LEVEL"`)
 
+* `SM_CONGESTION` (value: `"SM_CONGESTION"`)
+
+* `DISPERSION` (value: `"DISPERSION"`)
+
+* `RED_TRANS_EXP` (value: `"RED_TRANS_EXP"`)
+
+* `WLAN_PERFORMANCE` (value: `"WLAN_PERFORMANCE"`)
+
+* `DN_PERFORMANCE` (value: `"DN_PERFORMANCE"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

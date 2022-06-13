@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Expiry** | Pointer to **time.Time** |  | [optional] 
-**TimeStampGen** | Pointer to **time.Time** |  | [optional] 
+**Start** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**Expiry** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**TimeStampGen** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**AnaMetaInfo** | Pointer to [**AnalyticsMetadataInfo**](AnalyticsMetadataInfo.md) |  | [optional] 
 **SliceLoadLevelInfos** | Pointer to [**[]SliceLoadLevelInformation**](SliceLoadLevelInformation.md) | The slices and their load level information. | [optional] 
 **NsiLoadLevelInfos** | Pointer to [**[]NsiLoadLevelInfo**](NsiLoadLevelInfo.md) |  | [optional] 
 **NfLoadLevelInfos** | Pointer to [**[]NfLoadLevelInformation**](NfLoadLevelInformation.md) |  | [optional] 
@@ -16,7 +18,12 @@ Name | Type | Description | Notes
 **UeComms** | Pointer to [**[]UeCommunication**](UeCommunication.md) |  | [optional] 
 **UserDataCongInfos** | Pointer to [**[]UserDataCongestionInfo**](UserDataCongestionInfo.md) |  | [optional] 
 **AbnorBehavrs** | Pointer to [**[]AbnormalBehaviour**](AbnormalBehaviour.md) |  | [optional] 
-**SuppFeat** | Pointer to **string** |  | [optional] 
+**SmccExps** | Pointer to [**[]SmcceInfo**](SmcceInfo.md) |  | [optional] 
+**DisperInfos** | Pointer to [**[]DispersionInfo**](DispersionInfo.md) |  | [optional] 
+**RedTransInfos** | Pointer to [**[]RedundantTransmissionExpInfo**](RedundantTransmissionExpInfo.md) |  | [optional] 
+**WlanInfos** | Pointer to [**[]WlanPerformanceInfo**](WlanPerformanceInfo.md) |  | [optional] 
+**DnPerfInfos** | Pointer to [**[]DnPerfInfo**](DnPerfInfo.md) |  | [optional] 
+**SuppFeat** | Pointer to **string** | A string used to indicate the features supported by an API that is used as defined in clause  6.6 in 3GPP TS 29.500. The string shall contain a bitmask indicating supported features in  hexadecimal representation Each character in the string shall take a value of \&quot;0\&quot; to \&quot;9\&quot;,  \&quot;a\&quot; to \&quot;f\&quot; or \&quot;A\&quot; to \&quot;F\&quot; and shall represent the support of 4 features as described in  table 5.2.2-3. The most significant character representing the highest-numbered features shall  appear first in the string, and the character representing features 1 to 4 shall appear last  in the string. The list of features and their numbering (starting with 1) are defined  separately for each API. If the string contains a lower number of characters than there are  defined features for an API, all features that would be represented by characters that are not  present in the string are not supported.  | [optional] 
 
 ## Methods
 
@@ -36,6 +43,31 @@ will change when the set of required properties is changed
 NewAnalyticsDataWithDefaults instantiates a new AnalyticsData object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetStart
+
+`func (o *AnalyticsData) GetStart() time.Time`
+
+GetStart returns the Start field if non-nil, zero value otherwise.
+
+### GetStartOk
+
+`func (o *AnalyticsData) GetStartOk() (*time.Time, bool)`
+
+GetStartOk returns a tuple with the Start field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStart
+
+`func (o *AnalyticsData) SetStart(v time.Time)`
+
+SetStart sets Start field to given value.
+
+### HasStart
+
+`func (o *AnalyticsData) HasStart() bool`
+
+HasStart returns a boolean if a field has been set.
 
 ### GetExpiry
 
@@ -86,6 +118,31 @@ SetTimeStampGen sets TimeStampGen field to given value.
 `func (o *AnalyticsData) HasTimeStampGen() bool`
 
 HasTimeStampGen returns a boolean if a field has been set.
+
+### GetAnaMetaInfo
+
+`func (o *AnalyticsData) GetAnaMetaInfo() AnalyticsMetadataInfo`
+
+GetAnaMetaInfo returns the AnaMetaInfo field if non-nil, zero value otherwise.
+
+### GetAnaMetaInfoOk
+
+`func (o *AnalyticsData) GetAnaMetaInfoOk() (*AnalyticsMetadataInfo, bool)`
+
+GetAnaMetaInfoOk returns a tuple with the AnaMetaInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnaMetaInfo
+
+`func (o *AnalyticsData) SetAnaMetaInfo(v AnalyticsMetadataInfo)`
+
+SetAnaMetaInfo sets AnaMetaInfo field to given value.
+
+### HasAnaMetaInfo
+
+`func (o *AnalyticsData) HasAnaMetaInfo() bool`
+
+HasAnaMetaInfo returns a boolean if a field has been set.
 
 ### GetSliceLoadLevelInfos
 
@@ -336,6 +393,131 @@ SetAbnorBehavrs sets AbnorBehavrs field to given value.
 `func (o *AnalyticsData) HasAbnorBehavrs() bool`
 
 HasAbnorBehavrs returns a boolean if a field has been set.
+
+### GetSmccExps
+
+`func (o *AnalyticsData) GetSmccExps() []SmcceInfo`
+
+GetSmccExps returns the SmccExps field if non-nil, zero value otherwise.
+
+### GetSmccExpsOk
+
+`func (o *AnalyticsData) GetSmccExpsOk() (*[]SmcceInfo, bool)`
+
+GetSmccExpsOk returns a tuple with the SmccExps field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSmccExps
+
+`func (o *AnalyticsData) SetSmccExps(v []SmcceInfo)`
+
+SetSmccExps sets SmccExps field to given value.
+
+### HasSmccExps
+
+`func (o *AnalyticsData) HasSmccExps() bool`
+
+HasSmccExps returns a boolean if a field has been set.
+
+### GetDisperInfos
+
+`func (o *AnalyticsData) GetDisperInfos() []DispersionInfo`
+
+GetDisperInfos returns the DisperInfos field if non-nil, zero value otherwise.
+
+### GetDisperInfosOk
+
+`func (o *AnalyticsData) GetDisperInfosOk() (*[]DispersionInfo, bool)`
+
+GetDisperInfosOk returns a tuple with the DisperInfos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisperInfos
+
+`func (o *AnalyticsData) SetDisperInfos(v []DispersionInfo)`
+
+SetDisperInfos sets DisperInfos field to given value.
+
+### HasDisperInfos
+
+`func (o *AnalyticsData) HasDisperInfos() bool`
+
+HasDisperInfos returns a boolean if a field has been set.
+
+### GetRedTransInfos
+
+`func (o *AnalyticsData) GetRedTransInfos() []RedundantTransmissionExpInfo`
+
+GetRedTransInfos returns the RedTransInfos field if non-nil, zero value otherwise.
+
+### GetRedTransInfosOk
+
+`func (o *AnalyticsData) GetRedTransInfosOk() (*[]RedundantTransmissionExpInfo, bool)`
+
+GetRedTransInfosOk returns a tuple with the RedTransInfos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedTransInfos
+
+`func (o *AnalyticsData) SetRedTransInfos(v []RedundantTransmissionExpInfo)`
+
+SetRedTransInfos sets RedTransInfos field to given value.
+
+### HasRedTransInfos
+
+`func (o *AnalyticsData) HasRedTransInfos() bool`
+
+HasRedTransInfos returns a boolean if a field has been set.
+
+### GetWlanInfos
+
+`func (o *AnalyticsData) GetWlanInfos() []WlanPerformanceInfo`
+
+GetWlanInfos returns the WlanInfos field if non-nil, zero value otherwise.
+
+### GetWlanInfosOk
+
+`func (o *AnalyticsData) GetWlanInfosOk() (*[]WlanPerformanceInfo, bool)`
+
+GetWlanInfosOk returns a tuple with the WlanInfos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWlanInfos
+
+`func (o *AnalyticsData) SetWlanInfos(v []WlanPerformanceInfo)`
+
+SetWlanInfos sets WlanInfos field to given value.
+
+### HasWlanInfos
+
+`func (o *AnalyticsData) HasWlanInfos() bool`
+
+HasWlanInfos returns a boolean if a field has been set.
+
+### GetDnPerfInfos
+
+`func (o *AnalyticsData) GetDnPerfInfos() []DnPerfInfo`
+
+GetDnPerfInfos returns the DnPerfInfos field if non-nil, zero value otherwise.
+
+### GetDnPerfInfosOk
+
+`func (o *AnalyticsData) GetDnPerfInfosOk() (*[]DnPerfInfo, bool)`
+
+GetDnPerfInfosOk returns a tuple with the DnPerfInfos field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnPerfInfos
+
+`func (o *AnalyticsData) SetDnPerfInfos(v []DnPerfInfo)`
+
+SetDnPerfInfos sets DnPerfInfos field to given value.
+
+### HasDnPerfInfos
+
+`func (o *AnalyticsData) HasDnPerfInfos() bool`
+
+HasDnPerfInfos returns a boolean if a field has been set.
 
 ### GetSuppFeat
 

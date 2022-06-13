@@ -5,12 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Accuracy** | Pointer to [**Accuracy**](Accuracy.md) |  | [optional] 
-**StartTs** | Pointer to **time.Time** |  | [optional] 
-**EndTs** | Pointer to **time.Time** |  | [optional] 
-**SampRatio** | Pointer to **int32** |  | [optional] 
-**MaxObjectNbr** | Pointer to **int32** |  | [optional] 
-**MaxSupiNbr** | Pointer to **int32** |  | [optional] 
-**TimeAnaNeeded** | Pointer to **time.Time** |  | [optional] 
+**AccPerSubset** | Pointer to [**[]Accuracy**](Accuracy.md) | Each element indicates the preferred accuracy level per analytics subset. It may be present if the \&quot;listOfAnaSubsets\&quot; attribute is present in the subscription request when the subscription event is NF_LOAD, UE_COMM, DISPERSION, NETWORK_PERFORMANCE, WLAN_PERFORMANCE, DN_PERFORMANCE or SERVICE_EXPERIENCE.  | [optional] 
+**StartTs** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**EndTs** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**OffsetPeriod** | Pointer to **int32** | Offset period in units of seconds to the reporting time, if the value is negative means statistics in the past offset period, otherwise a positive value means prediction in the future offset period. May be present if the \&quot;repPeriod\&quot; attribute is included within the \&quot;evtReq\&quot; attribute. | [optional] 
+**SampRatio** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
+**MaxObjectNbr** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
+**MaxSupiNbr** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
+**TimeAnaNeeded** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**AnaMeta** | Pointer to [**[]AnalyticsMetadata**](AnalyticsMetadata.md) |  | [optional] 
+**AnaMetaInd** | Pointer to [**AnalyticsMetadataIndication**](AnalyticsMetadataIndication.md) |  | [optional] 
 
 ## Methods
 
@@ -55,6 +59,31 @@ SetAccuracy sets Accuracy field to given value.
 `func (o *EventReportingRequirement) HasAccuracy() bool`
 
 HasAccuracy returns a boolean if a field has been set.
+
+### GetAccPerSubset
+
+`func (o *EventReportingRequirement) GetAccPerSubset() []Accuracy`
+
+GetAccPerSubset returns the AccPerSubset field if non-nil, zero value otherwise.
+
+### GetAccPerSubsetOk
+
+`func (o *EventReportingRequirement) GetAccPerSubsetOk() (*[]Accuracy, bool)`
+
+GetAccPerSubsetOk returns a tuple with the AccPerSubset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccPerSubset
+
+`func (o *EventReportingRequirement) SetAccPerSubset(v []Accuracy)`
+
+SetAccPerSubset sets AccPerSubset field to given value.
+
+### HasAccPerSubset
+
+`func (o *EventReportingRequirement) HasAccPerSubset() bool`
+
+HasAccPerSubset returns a boolean if a field has been set.
 
 ### GetStartTs
 
@@ -105,6 +134,31 @@ SetEndTs sets EndTs field to given value.
 `func (o *EventReportingRequirement) HasEndTs() bool`
 
 HasEndTs returns a boolean if a field has been set.
+
+### GetOffsetPeriod
+
+`func (o *EventReportingRequirement) GetOffsetPeriod() int32`
+
+GetOffsetPeriod returns the OffsetPeriod field if non-nil, zero value otherwise.
+
+### GetOffsetPeriodOk
+
+`func (o *EventReportingRequirement) GetOffsetPeriodOk() (*int32, bool)`
+
+GetOffsetPeriodOk returns a tuple with the OffsetPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOffsetPeriod
+
+`func (o *EventReportingRequirement) SetOffsetPeriod(v int32)`
+
+SetOffsetPeriod sets OffsetPeriod field to given value.
+
+### HasOffsetPeriod
+
+`func (o *EventReportingRequirement) HasOffsetPeriod() bool`
+
+HasOffsetPeriod returns a boolean if a field has been set.
 
 ### GetSampRatio
 
@@ -205,6 +259,56 @@ SetTimeAnaNeeded sets TimeAnaNeeded field to given value.
 `func (o *EventReportingRequirement) HasTimeAnaNeeded() bool`
 
 HasTimeAnaNeeded returns a boolean if a field has been set.
+
+### GetAnaMeta
+
+`func (o *EventReportingRequirement) GetAnaMeta() []AnalyticsMetadata`
+
+GetAnaMeta returns the AnaMeta field if non-nil, zero value otherwise.
+
+### GetAnaMetaOk
+
+`func (o *EventReportingRequirement) GetAnaMetaOk() (*[]AnalyticsMetadata, bool)`
+
+GetAnaMetaOk returns a tuple with the AnaMeta field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnaMeta
+
+`func (o *EventReportingRequirement) SetAnaMeta(v []AnalyticsMetadata)`
+
+SetAnaMeta sets AnaMeta field to given value.
+
+### HasAnaMeta
+
+`func (o *EventReportingRequirement) HasAnaMeta() bool`
+
+HasAnaMeta returns a boolean if a field has been set.
+
+### GetAnaMetaInd
+
+`func (o *EventReportingRequirement) GetAnaMetaInd() AnalyticsMetadataIndication`
+
+GetAnaMetaInd returns the AnaMetaInd field if non-nil, zero value otherwise.
+
+### GetAnaMetaIndOk
+
+`func (o *EventReportingRequirement) GetAnaMetaIndOk() (*AnalyticsMetadataIndication, bool)`
+
+GetAnaMetaIndOk returns a tuple with the AnaMetaInd field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAnaMetaInd
+
+`func (o *EventReportingRequirement) SetAnaMetaInd(v AnalyticsMetadataIndication)`
+
+SetAnaMetaInd sets AnaMetaInd field to given value.
+
+### HasAnaMetaInd
+
+`func (o *EventReportingRequirement) HasAnaMetaInd() bool`
+
+HasAnaMetaInd returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Freq** | Pointer to **float32** |  | [optional] 
-**Tm** | Pointer to **time.Time** |  | [optional] 
+**Freq** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
+**Tm** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
 **LocArea** | Pointer to [**NetworkAreaInfo**](NetworkAreaInfo.md) |  | [optional] 
 **Vol** | Pointer to **int64** | Unsigned integer identifying a volume in units of bytes. | [optional] 
 

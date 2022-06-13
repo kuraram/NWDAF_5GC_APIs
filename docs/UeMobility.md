@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ts** | Pointer to **time.Time** |  | [optional] 
+**Ts** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
 **RecurringTime** | Pointer to [**ScheduledCommunicationTime**](ScheduledCommunicationTime.md) |  | [optional] 
-**Duration** | **int32** |  | 
-**DurationVariance** | Pointer to **float32** |  | [optional] 
+**Duration** | **int32** | indicating a time in seconds. | 
+**DurationVariance** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
 **LocInfos** | [**[]LocationInfo**](LocationInfo.md) |  | 
 
 ## Methods

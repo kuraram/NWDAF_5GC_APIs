@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Supis** | Pointer to **[]string** |  | [optional] 
 **Excep** | [**Exception**](Exception.md) |  | 
-**Dnn** | Pointer to **string** |  | [optional] 
+**Dnn** | Pointer to **string** | String representing a Data Network as defined in clause 9A of 3GPP TS 23.003; it shall contain either a DNN Network Identifier, or a full DNN with both the Network Identifier and Operator Identifier, as specified in 3GPP TS 23.003 clause 9.1.1 and 9.1.2. It shall be coded as string in which the labels are separated by dots (e.g. \&quot;Label1.Label2.Label3\&quot;). | [optional] 
 **Snssai** | Pointer to [**Snssai**](Snssai.md) |  | [optional] 
-**Ratio** | Pointer to **int32** |  | [optional] 
-**Confidence** | Pointer to **int32** |  | [optional] 
+**Ratio** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
+**Confidence** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
 **AddtMeasInfo** | Pointer to [**AdditionalMeasurement**](AdditionalMeasurement.md) |  | [optional] 
 
 ## Methods

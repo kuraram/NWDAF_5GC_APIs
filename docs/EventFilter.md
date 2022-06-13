@@ -9,7 +9,11 @@ Name | Type | Description | Notes
 **AppIds** | Pointer to **[]string** |  | [optional] 
 **Dnns** | Pointer to **[]string** |  | [optional] 
 **Dnais** | Pointer to **[]string** |  | [optional] 
+**LadnDnns** | Pointer to **[]string** | Identification(s) of LADN DNN to indicate the LADN service area as the AOI. | [optional] 
 **NetworkArea** | Pointer to [**NetworkAreaInfo**](NetworkAreaInfo.md) |  | [optional] 
+**VisitedAreas** | Pointer to [**[]NetworkAreaInfo**](NetworkAreaInfo.md) |  | [optional] 
+**MaxTopAppUlNbr** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
+**MaxTopAppDlNbr** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
 **NfInstanceIds** | Pointer to **[]string** |  | [optional] 
 **NfSetIds** | Pointer to **[]string** |  | [optional] 
 **NfTypes** | Pointer to [**[]NFType**](NFType.md) |  | [optional] 
@@ -20,6 +24,15 @@ Name | Type | Description | Notes
 **ExcepIds** | Pointer to [**[]ExceptionId**](ExceptionId.md) |  | [optional] 
 **ExptAnaType** | Pointer to [**ExpectedAnalyticsType**](ExpectedAnalyticsType.md) |  | [optional] 
 **ExptUeBehav** | Pointer to [**ExpectedUeBehaviourData**](ExpectedUeBehaviourData.md) |  | [optional] 
+**RatTypes** | Pointer to [**[]RatType**](RatType.md) |  | [optional] 
+**Freqs** | Pointer to **[]int32** |  | [optional] 
+**DisperReqs** | Pointer to [**[]DispersionRequirement**](DispersionRequirement.md) |  | [optional] 
+**RedTransReqs** | Pointer to [**[]RedundantTransmissionExpReq**](RedundantTransmissionExpReq.md) |  | [optional] 
+**WlanReqs** | Pointer to [**[]WlanPerformanceReq**](WlanPerformanceReq.md) |  | [optional] 
+**ListOfAnaSubsets** | Pointer to [**[]AnalyticsSubset**](AnalyticsSubset.md) |  | [optional] 
+**UpfId** | Pointer to **string** | Identifies the UPF. | [optional] 
+**AppServerAddrs** | Pointer to [**[]AddrFqdn**](AddrFqdn.md) |  | [optional] 
+**DnPerfReqs** | Pointer to [**[]DnPerformanceReq**](DnPerformanceReq.md) |  | [optional] 
 
 ## Methods
 
@@ -165,6 +178,31 @@ SetDnais sets Dnais field to given value.
 
 HasDnais returns a boolean if a field has been set.
 
+### GetLadnDnns
+
+`func (o *EventFilter) GetLadnDnns() []string`
+
+GetLadnDnns returns the LadnDnns field if non-nil, zero value otherwise.
+
+### GetLadnDnnsOk
+
+`func (o *EventFilter) GetLadnDnnsOk() (*[]string, bool)`
+
+GetLadnDnnsOk returns a tuple with the LadnDnns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLadnDnns
+
+`func (o *EventFilter) SetLadnDnns(v []string)`
+
+SetLadnDnns sets LadnDnns field to given value.
+
+### HasLadnDnns
+
+`func (o *EventFilter) HasLadnDnns() bool`
+
+HasLadnDnns returns a boolean if a field has been set.
+
 ### GetNetworkArea
 
 `func (o *EventFilter) GetNetworkArea() NetworkAreaInfo`
@@ -189,6 +227,81 @@ SetNetworkArea sets NetworkArea field to given value.
 `func (o *EventFilter) HasNetworkArea() bool`
 
 HasNetworkArea returns a boolean if a field has been set.
+
+### GetVisitedAreas
+
+`func (o *EventFilter) GetVisitedAreas() []NetworkAreaInfo`
+
+GetVisitedAreas returns the VisitedAreas field if non-nil, zero value otherwise.
+
+### GetVisitedAreasOk
+
+`func (o *EventFilter) GetVisitedAreasOk() (*[]NetworkAreaInfo, bool)`
+
+GetVisitedAreasOk returns a tuple with the VisitedAreas field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVisitedAreas
+
+`func (o *EventFilter) SetVisitedAreas(v []NetworkAreaInfo)`
+
+SetVisitedAreas sets VisitedAreas field to given value.
+
+### HasVisitedAreas
+
+`func (o *EventFilter) HasVisitedAreas() bool`
+
+HasVisitedAreas returns a boolean if a field has been set.
+
+### GetMaxTopAppUlNbr
+
+`func (o *EventFilter) GetMaxTopAppUlNbr() int32`
+
+GetMaxTopAppUlNbr returns the MaxTopAppUlNbr field if non-nil, zero value otherwise.
+
+### GetMaxTopAppUlNbrOk
+
+`func (o *EventFilter) GetMaxTopAppUlNbrOk() (*int32, bool)`
+
+GetMaxTopAppUlNbrOk returns a tuple with the MaxTopAppUlNbr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxTopAppUlNbr
+
+`func (o *EventFilter) SetMaxTopAppUlNbr(v int32)`
+
+SetMaxTopAppUlNbr sets MaxTopAppUlNbr field to given value.
+
+### HasMaxTopAppUlNbr
+
+`func (o *EventFilter) HasMaxTopAppUlNbr() bool`
+
+HasMaxTopAppUlNbr returns a boolean if a field has been set.
+
+### GetMaxTopAppDlNbr
+
+`func (o *EventFilter) GetMaxTopAppDlNbr() int32`
+
+GetMaxTopAppDlNbr returns the MaxTopAppDlNbr field if non-nil, zero value otherwise.
+
+### GetMaxTopAppDlNbrOk
+
+`func (o *EventFilter) GetMaxTopAppDlNbrOk() (*int32, bool)`
+
+GetMaxTopAppDlNbrOk returns a tuple with the MaxTopAppDlNbr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxTopAppDlNbr
+
+`func (o *EventFilter) SetMaxTopAppDlNbr(v int32)`
+
+SetMaxTopAppDlNbr sets MaxTopAppDlNbr field to given value.
+
+### HasMaxTopAppDlNbr
+
+`func (o *EventFilter) HasMaxTopAppDlNbr() bool`
+
+HasMaxTopAppDlNbr returns a boolean if a field has been set.
 
 ### GetNfInstanceIds
 
@@ -439,6 +552,231 @@ SetExptUeBehav sets ExptUeBehav field to given value.
 `func (o *EventFilter) HasExptUeBehav() bool`
 
 HasExptUeBehav returns a boolean if a field has been set.
+
+### GetRatTypes
+
+`func (o *EventFilter) GetRatTypes() []RatType`
+
+GetRatTypes returns the RatTypes field if non-nil, zero value otherwise.
+
+### GetRatTypesOk
+
+`func (o *EventFilter) GetRatTypesOk() (*[]RatType, bool)`
+
+GetRatTypesOk returns a tuple with the RatTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRatTypes
+
+`func (o *EventFilter) SetRatTypes(v []RatType)`
+
+SetRatTypes sets RatTypes field to given value.
+
+### HasRatTypes
+
+`func (o *EventFilter) HasRatTypes() bool`
+
+HasRatTypes returns a boolean if a field has been set.
+
+### GetFreqs
+
+`func (o *EventFilter) GetFreqs() []int32`
+
+GetFreqs returns the Freqs field if non-nil, zero value otherwise.
+
+### GetFreqsOk
+
+`func (o *EventFilter) GetFreqsOk() (*[]int32, bool)`
+
+GetFreqsOk returns a tuple with the Freqs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFreqs
+
+`func (o *EventFilter) SetFreqs(v []int32)`
+
+SetFreqs sets Freqs field to given value.
+
+### HasFreqs
+
+`func (o *EventFilter) HasFreqs() bool`
+
+HasFreqs returns a boolean if a field has been set.
+
+### GetDisperReqs
+
+`func (o *EventFilter) GetDisperReqs() []DispersionRequirement`
+
+GetDisperReqs returns the DisperReqs field if non-nil, zero value otherwise.
+
+### GetDisperReqsOk
+
+`func (o *EventFilter) GetDisperReqsOk() (*[]DispersionRequirement, bool)`
+
+GetDisperReqsOk returns a tuple with the DisperReqs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisperReqs
+
+`func (o *EventFilter) SetDisperReqs(v []DispersionRequirement)`
+
+SetDisperReqs sets DisperReqs field to given value.
+
+### HasDisperReqs
+
+`func (o *EventFilter) HasDisperReqs() bool`
+
+HasDisperReqs returns a boolean if a field has been set.
+
+### GetRedTransReqs
+
+`func (o *EventFilter) GetRedTransReqs() []RedundantTransmissionExpReq`
+
+GetRedTransReqs returns the RedTransReqs field if non-nil, zero value otherwise.
+
+### GetRedTransReqsOk
+
+`func (o *EventFilter) GetRedTransReqsOk() (*[]RedundantTransmissionExpReq, bool)`
+
+GetRedTransReqsOk returns a tuple with the RedTransReqs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRedTransReqs
+
+`func (o *EventFilter) SetRedTransReqs(v []RedundantTransmissionExpReq)`
+
+SetRedTransReqs sets RedTransReqs field to given value.
+
+### HasRedTransReqs
+
+`func (o *EventFilter) HasRedTransReqs() bool`
+
+HasRedTransReqs returns a boolean if a field has been set.
+
+### GetWlanReqs
+
+`func (o *EventFilter) GetWlanReqs() []WlanPerformanceReq`
+
+GetWlanReqs returns the WlanReqs field if non-nil, zero value otherwise.
+
+### GetWlanReqsOk
+
+`func (o *EventFilter) GetWlanReqsOk() (*[]WlanPerformanceReq, bool)`
+
+GetWlanReqsOk returns a tuple with the WlanReqs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWlanReqs
+
+`func (o *EventFilter) SetWlanReqs(v []WlanPerformanceReq)`
+
+SetWlanReqs sets WlanReqs field to given value.
+
+### HasWlanReqs
+
+`func (o *EventFilter) HasWlanReqs() bool`
+
+HasWlanReqs returns a boolean if a field has been set.
+
+### GetListOfAnaSubsets
+
+`func (o *EventFilter) GetListOfAnaSubsets() []AnalyticsSubset`
+
+GetListOfAnaSubsets returns the ListOfAnaSubsets field if non-nil, zero value otherwise.
+
+### GetListOfAnaSubsetsOk
+
+`func (o *EventFilter) GetListOfAnaSubsetsOk() (*[]AnalyticsSubset, bool)`
+
+GetListOfAnaSubsetsOk returns a tuple with the ListOfAnaSubsets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetListOfAnaSubsets
+
+`func (o *EventFilter) SetListOfAnaSubsets(v []AnalyticsSubset)`
+
+SetListOfAnaSubsets sets ListOfAnaSubsets field to given value.
+
+### HasListOfAnaSubsets
+
+`func (o *EventFilter) HasListOfAnaSubsets() bool`
+
+HasListOfAnaSubsets returns a boolean if a field has been set.
+
+### GetUpfId
+
+`func (o *EventFilter) GetUpfId() string`
+
+GetUpfId returns the UpfId field if non-nil, zero value otherwise.
+
+### GetUpfIdOk
+
+`func (o *EventFilter) GetUpfIdOk() (*string, bool)`
+
+GetUpfIdOk returns a tuple with the UpfId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpfId
+
+`func (o *EventFilter) SetUpfId(v string)`
+
+SetUpfId sets UpfId field to given value.
+
+### HasUpfId
+
+`func (o *EventFilter) HasUpfId() bool`
+
+HasUpfId returns a boolean if a field has been set.
+
+### GetAppServerAddrs
+
+`func (o *EventFilter) GetAppServerAddrs() []AddrFqdn`
+
+GetAppServerAddrs returns the AppServerAddrs field if non-nil, zero value otherwise.
+
+### GetAppServerAddrsOk
+
+`func (o *EventFilter) GetAppServerAddrsOk() (*[]AddrFqdn, bool)`
+
+GetAppServerAddrsOk returns a tuple with the AppServerAddrs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAppServerAddrs
+
+`func (o *EventFilter) SetAppServerAddrs(v []AddrFqdn)`
+
+SetAppServerAddrs sets AppServerAddrs field to given value.
+
+### HasAppServerAddrs
+
+`func (o *EventFilter) HasAppServerAddrs() bool`
+
+HasAppServerAddrs returns a boolean if a field has been set.
+
+### GetDnPerfReqs
+
+`func (o *EventFilter) GetDnPerfReqs() []DnPerformanceReq`
+
+GetDnPerfReqs returns the DnPerfReqs field if non-nil, zero value otherwise.
+
+### GetDnPerfReqsOk
+
+`func (o *EventFilter) GetDnPerfReqsOk() (*[]DnPerformanceReq, bool)`
+
+GetDnPerfReqsOk returns a tuple with the DnPerfReqs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDnPerfReqs
+
+`func (o *EventFilter) SetDnPerfReqs(v []DnPerformanceReq)`
+
+SetDnPerfReqs sets DnPerfReqs field to given value.
+
+### HasDnPerfReqs
+
+`func (o *EventFilter) HasDnPerfReqs() bool`
+
+HasDnPerfReqs returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

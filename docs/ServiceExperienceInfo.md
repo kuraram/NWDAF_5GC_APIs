@@ -5,15 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **SvcExprc** | [**SvcExperience**](SvcExperience.md) |  | 
-**SvcExprcVariance** | Pointer to **float32** |  | [optional] 
+**SvcExprcVariance** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
 **Supis** | Pointer to **[]string** |  | [optional] 
 **Snssai** | Pointer to [**Snssai**](Snssai.md) |  | [optional] 
-**AppId** | Pointer to **string** |  | [optional] 
-**Confidence** | Pointer to **int32** |  | [optional] 
-**Dnn** | Pointer to **string** |  | [optional] 
+**AppId** | Pointer to **string** | String providing an application identifier. | [optional] 
+**SrvExpcType** | Pointer to [**ServiceExperienceType**](ServiceExperienceType.md) |  | [optional] 
+**Confidence** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
+**Dnn** | Pointer to **string** | String representing a Data Network as defined in clause 9A of 3GPP TS 23.003; it shall contain either a DNN Network Identifier, or a full DNN with both the Network Identifier and Operator Identifier, as specified in 3GPP TS 23.003 clause 9.1.1 and 9.1.2. It shall be coded as string in which the labels are separated by dots (e.g. \&quot;Label1.Label2.Label3\&quot;). | [optional] 
 **NetworkArea** | Pointer to [**NetworkAreaInfo**](NetworkAreaInfo.md) |  | [optional] 
-**NsiId** | Pointer to **string** |  | [optional] 
-**Ratio** | Pointer to **int32** |  | [optional] 
+**NsiId** | Pointer to **string** | Contains the Identifier of the selected Network Slice instance | [optional] 
+**Ratio** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
+**RatType** | Pointer to [**RatType**](RatType.md) |  | [optional] 
+**Frequency** | Pointer to **int32** | Integer value indicating the ARFCN applicable for a downlink, uplink or bi-directional (TDD) NR global frequency raster, as definition of \&quot;ARFCN-ValueNR\&quot; IE in clause 6.3.2 of 3GPP TS 38.331.  | [optional] 
 
 ## Methods
 
@@ -154,6 +157,31 @@ SetAppId sets AppId field to given value.
 
 HasAppId returns a boolean if a field has been set.
 
+### GetSrvExpcType
+
+`func (o *ServiceExperienceInfo) GetSrvExpcType() ServiceExperienceType`
+
+GetSrvExpcType returns the SrvExpcType field if non-nil, zero value otherwise.
+
+### GetSrvExpcTypeOk
+
+`func (o *ServiceExperienceInfo) GetSrvExpcTypeOk() (*ServiceExperienceType, bool)`
+
+GetSrvExpcTypeOk returns a tuple with the SrvExpcType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSrvExpcType
+
+`func (o *ServiceExperienceInfo) SetSrvExpcType(v ServiceExperienceType)`
+
+SetSrvExpcType sets SrvExpcType field to given value.
+
+### HasSrvExpcType
+
+`func (o *ServiceExperienceInfo) HasSrvExpcType() bool`
+
+HasSrvExpcType returns a boolean if a field has been set.
+
 ### GetConfidence
 
 `func (o *ServiceExperienceInfo) GetConfidence() int32`
@@ -278,6 +306,56 @@ SetRatio sets Ratio field to given value.
 `func (o *ServiceExperienceInfo) HasRatio() bool`
 
 HasRatio returns a boolean if a field has been set.
+
+### GetRatType
+
+`func (o *ServiceExperienceInfo) GetRatType() RatType`
+
+GetRatType returns the RatType field if non-nil, zero value otherwise.
+
+### GetRatTypeOk
+
+`func (o *ServiceExperienceInfo) GetRatTypeOk() (*RatType, bool)`
+
+GetRatTypeOk returns a tuple with the RatType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRatType
+
+`func (o *ServiceExperienceInfo) SetRatType(v RatType)`
+
+SetRatType sets RatType field to given value.
+
+### HasRatType
+
+`func (o *ServiceExperienceInfo) HasRatType() bool`
+
+HasRatType returns a boolean if a field has been set.
+
+### GetFrequency
+
+`func (o *ServiceExperienceInfo) GetFrequency() int32`
+
+GetFrequency returns the Frequency field if non-nil, zero value otherwise.
+
+### GetFrequencyOk
+
+`func (o *ServiceExperienceInfo) GetFrequencyOk() (*int32, bool)`
+
+GetFrequencyOk returns a tuple with the Frequency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFrequency
+
+`func (o *ServiceExperienceInfo) SetFrequency(v int32)`
+
+SetFrequency sets Frequency field to given value.
+
+### HasFrequency
+
+`func (o *ServiceExperienceInfo) HasFrequency() bool`
+
+HasFrequency returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

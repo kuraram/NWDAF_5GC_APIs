@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DaysOfWeek** | Pointer to **[]int32** | Identifies the day(s) of the week. If absent, it indicates every day of the week. | [optional] 
-**TimeOfDayStart** | Pointer to [**Object**](Object.md) |  | [optional] 
-**TimeOfDayEnd** | Pointer to [**Object**](Object.md) |  | [optional] 
+**TimeOfDayStart** | Pointer to **string** | String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC). | [optional] 
+**TimeOfDayEnd** | Pointer to **string** | String with format partial-time or full-time as defined in clause 5.6 of IETF RFC 3339. Examples, 20:15:00, 20:15:00-08:00 (for 8 hours behind UTC). | [optional] 
 
 ## Methods
 
@@ -54,20 +54,20 @@ HasDaysOfWeek returns a boolean if a field has been set.
 
 ### GetTimeOfDayStart
 
-`func (o *ScheduledCommunicationTime1) GetTimeOfDayStart() Object`
+`func (o *ScheduledCommunicationTime1) GetTimeOfDayStart() string`
 
 GetTimeOfDayStart returns the TimeOfDayStart field if non-nil, zero value otherwise.
 
 ### GetTimeOfDayStartOk
 
-`func (o *ScheduledCommunicationTime1) GetTimeOfDayStartOk() (*Object, bool)`
+`func (o *ScheduledCommunicationTime1) GetTimeOfDayStartOk() (*string, bool)`
 
 GetTimeOfDayStartOk returns a tuple with the TimeOfDayStart field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimeOfDayStart
 
-`func (o *ScheduledCommunicationTime1) SetTimeOfDayStart(v Object)`
+`func (o *ScheduledCommunicationTime1) SetTimeOfDayStart(v string)`
 
 SetTimeOfDayStart sets TimeOfDayStart field to given value.
 
@@ -79,20 +79,20 @@ HasTimeOfDayStart returns a boolean if a field has been set.
 
 ### GetTimeOfDayEnd
 
-`func (o *ScheduledCommunicationTime1) GetTimeOfDayEnd() Object`
+`func (o *ScheduledCommunicationTime1) GetTimeOfDayEnd() string`
 
 GetTimeOfDayEnd returns the TimeOfDayEnd field if non-nil, zero value otherwise.
 
 ### GetTimeOfDayEndOk
 
-`func (o *ScheduledCommunicationTime1) GetTimeOfDayEndOk() (*Object, bool)`
+`func (o *ScheduledCommunicationTime1) GetTimeOfDayEndOk() (*string, bool)`
 
 GetTimeOfDayEndOk returns a tuple with the TimeOfDayEnd field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimeOfDayEnd
 
-`func (o *ScheduledCommunicationTime1) SetTimeOfDayEnd(v Object)`
+`func (o *ScheduledCommunicationTime1) SetTimeOfDayEnd(v string)`
 
 SetTimeOfDayEnd sets TimeOfDayEnd field to given value.
 

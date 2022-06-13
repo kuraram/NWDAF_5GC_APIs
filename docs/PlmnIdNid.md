@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mcc** | [**Object**](Object.md) |  | 
-**Mnc** | [**Object**](Object.md) |  | 
-**Nid** | Pointer to [**Object**](Object.md) |  | [optional] 
+**Mcc** | **string** | Mobile Country Code part of the PLMN, comprising 3 digits, as defined in clause 9.3.3.5 of 3GPP TS 38.413. | 
+**Mnc** | **string** | Mobile Network Code part of the PLMN, comprising 2 or 3 digits, as defined in clause 9.3.3.5 of 3GPP TS 38.413. | 
+**Nid** | Pointer to **string** | This represents the Network Identifier, which together with a PLMN ID is used to identify an SNPN (see 3GPP TS 23.003 and 3GPP TS 23.501 clause 5.30.2.1). | [optional] 
 
 ## Methods
 
 ### NewPlmnIdNid
 
-`func NewPlmnIdNid(mcc Object, mnc Object, ) *PlmnIdNid`
+`func NewPlmnIdNid(mcc string, mnc string, ) *PlmnIdNid`
 
 NewPlmnIdNid instantiates a new PlmnIdNid object
 This constructor will assign default values to properties that have it defined,
@@ -29,60 +29,60 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMcc
 
-`func (o *PlmnIdNid) GetMcc() Object`
+`func (o *PlmnIdNid) GetMcc() string`
 
 GetMcc returns the Mcc field if non-nil, zero value otherwise.
 
 ### GetMccOk
 
-`func (o *PlmnIdNid) GetMccOk() (*Object, bool)`
+`func (o *PlmnIdNid) GetMccOk() (*string, bool)`
 
 GetMccOk returns a tuple with the Mcc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMcc
 
-`func (o *PlmnIdNid) SetMcc(v Object)`
+`func (o *PlmnIdNid) SetMcc(v string)`
 
 SetMcc sets Mcc field to given value.
 
 
 ### GetMnc
 
-`func (o *PlmnIdNid) GetMnc() Object`
+`func (o *PlmnIdNid) GetMnc() string`
 
 GetMnc returns the Mnc field if non-nil, zero value otherwise.
 
 ### GetMncOk
 
-`func (o *PlmnIdNid) GetMncOk() (*Object, bool)`
+`func (o *PlmnIdNid) GetMncOk() (*string, bool)`
 
 GetMncOk returns a tuple with the Mnc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMnc
 
-`func (o *PlmnIdNid) SetMnc(v Object)`
+`func (o *PlmnIdNid) SetMnc(v string)`
 
 SetMnc sets Mnc field to given value.
 
 
 ### GetNid
 
-`func (o *PlmnIdNid) GetNid() Object`
+`func (o *PlmnIdNid) GetNid() string`
 
 GetNid returns the Nid field if non-nil, zero value otherwise.
 
 ### GetNidOk
 
-`func (o *PlmnIdNid) GetNidOk() (*Object, bool)`
+`func (o *PlmnIdNid) GetNidOk() (*string, bool)`
 
 GetNidOk returns a tuple with the Nid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNid
 
-`func (o *PlmnIdNid) SetNid(v Object)`
+`func (o *PlmnIdNid) SetNid(v string)`
 
 SetNid sets Nid field to given value.
 

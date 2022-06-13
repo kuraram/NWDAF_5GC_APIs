@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StatusRegistered** | Pointer to **int32** |  | [optional] 
-**StatusUnregistered** | Pointer to **int32** |  | [optional] 
-**StatusUndiscoverable** | Pointer to **int32** |  | [optional] 
+**StatusRegistered** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
+**StatusUnregistered** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
+**StatusUndiscoverable** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
 
 ## Methods
 

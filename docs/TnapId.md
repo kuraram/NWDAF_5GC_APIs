@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SsId** | Pointer to **string** |  | [optional] 
-**BssId** | Pointer to **string** |  | [optional] 
-**CivicAddress** | Pointer to **string** |  | [optional] 
+**SsId** | Pointer to **string** | This IE shall be present if the UE is accessing the 5GC via a trusted WLAN access network.When present, it shall contain the SSID of the access point to which the UE is attached, that is received over NGAP, see IEEE Std 802.11-2012.   | [optional] 
+**BssId** | Pointer to **string** | When present, it shall contain the BSSID of the access point to which the UE is attached, that is received over NGAP, see IEEE Std 802.11-2012. | [optional] 
+**CivicAddress** | Pointer to **string** | string with format &#39;bytes&#39; as defined in OpenAPI | [optional] 
 
 ## Methods
 

@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NetworkArea** | [**NetworkAreaInfo**](NetworkAreaInfo.md) |  | 
 **NwPerfType** | [**NetworkPerfType**](NetworkPerfType.md) |  | 
-**RelativeRatio** | Pointer to **int32** |  | [optional] 
-**AbsoluteNum** | Pointer to **int32** |  | [optional] 
-**Confidence** | Pointer to **int32** |  | [optional] 
+**RelativeRatio** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
+**AbsoluteNum** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
+**Confidence** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
 
 ## Methods
 

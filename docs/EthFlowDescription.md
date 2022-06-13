@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DestMacAddr** | Pointer to **string** |  | [optional] 
+**DestMacAddr** | Pointer to **string** | String identifying a MAC address formatted in the hexadecimal notation according to clause 1.1 and clause 2.1 of RFC 7042 | [optional] 
 **EthType** | **string** |  | 
 **FDesc** | Pointer to **string** | Defines a packet filter of an IP flow. | [optional] 
-**FDir** | Pointer to [**Object**](Object.md) |  | [optional] 
-**SourceMacAddr** | Pointer to [**Object**](Object.md) |  | [optional] 
+**FDir** | Pointer to [**FlowDirection**](FlowDirection.md) |  | [optional] 
+**SourceMacAddr** | Pointer to **string** | String identifying a MAC address formatted in the hexadecimal notation according to clause 1.1 and clause 2.1 of RFC 7042 | [optional] 
 **VlanTags** | Pointer to **[]string** |  | [optional] 
-**SrcMacAddrEnd** | Pointer to [**Object**](Object.md) |  | [optional] 
-**DestMacAddrEnd** | Pointer to [**Object**](Object.md) |  | [optional] 
+**SrcMacAddrEnd** | Pointer to **string** | String identifying a MAC address formatted in the hexadecimal notation according to clause 1.1 and clause 2.1 of RFC 7042 | [optional] 
+**DestMacAddrEnd** | Pointer to **string** | String identifying a MAC address formatted in the hexadecimal notation according to clause 1.1 and clause 2.1 of RFC 7042 | [optional] 
 
 ## Methods
 
@@ -104,20 +104,20 @@ HasFDesc returns a boolean if a field has been set.
 
 ### GetFDir
 
-`func (o *EthFlowDescription) GetFDir() Object`
+`func (o *EthFlowDescription) GetFDir() FlowDirection`
 
 GetFDir returns the FDir field if non-nil, zero value otherwise.
 
 ### GetFDirOk
 
-`func (o *EthFlowDescription) GetFDirOk() (*Object, bool)`
+`func (o *EthFlowDescription) GetFDirOk() (*FlowDirection, bool)`
 
 GetFDirOk returns a tuple with the FDir field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFDir
 
-`func (o *EthFlowDescription) SetFDir(v Object)`
+`func (o *EthFlowDescription) SetFDir(v FlowDirection)`
 
 SetFDir sets FDir field to given value.
 
@@ -129,20 +129,20 @@ HasFDir returns a boolean if a field has been set.
 
 ### GetSourceMacAddr
 
-`func (o *EthFlowDescription) GetSourceMacAddr() Object`
+`func (o *EthFlowDescription) GetSourceMacAddr() string`
 
 GetSourceMacAddr returns the SourceMacAddr field if non-nil, zero value otherwise.
 
 ### GetSourceMacAddrOk
 
-`func (o *EthFlowDescription) GetSourceMacAddrOk() (*Object, bool)`
+`func (o *EthFlowDescription) GetSourceMacAddrOk() (*string, bool)`
 
 GetSourceMacAddrOk returns a tuple with the SourceMacAddr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSourceMacAddr
 
-`func (o *EthFlowDescription) SetSourceMacAddr(v Object)`
+`func (o *EthFlowDescription) SetSourceMacAddr(v string)`
 
 SetSourceMacAddr sets SourceMacAddr field to given value.
 
@@ -179,20 +179,20 @@ HasVlanTags returns a boolean if a field has been set.
 
 ### GetSrcMacAddrEnd
 
-`func (o *EthFlowDescription) GetSrcMacAddrEnd() Object`
+`func (o *EthFlowDescription) GetSrcMacAddrEnd() string`
 
 GetSrcMacAddrEnd returns the SrcMacAddrEnd field if non-nil, zero value otherwise.
 
 ### GetSrcMacAddrEndOk
 
-`func (o *EthFlowDescription) GetSrcMacAddrEndOk() (*Object, bool)`
+`func (o *EthFlowDescription) GetSrcMacAddrEndOk() (*string, bool)`
 
 GetSrcMacAddrEndOk returns a tuple with the SrcMacAddrEnd field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSrcMacAddrEnd
 
-`func (o *EthFlowDescription) SetSrcMacAddrEnd(v Object)`
+`func (o *EthFlowDescription) SetSrcMacAddrEnd(v string)`
 
 SetSrcMacAddrEnd sets SrcMacAddrEnd field to given value.
 
@@ -204,20 +204,20 @@ HasSrcMacAddrEnd returns a boolean if a field has been set.
 
 ### GetDestMacAddrEnd
 
-`func (o *EthFlowDescription) GetDestMacAddrEnd() Object`
+`func (o *EthFlowDescription) GetDestMacAddrEnd() string`
 
 GetDestMacAddrEnd returns the DestMacAddrEnd field if non-nil, zero value otherwise.
 
 ### GetDestMacAddrEndOk
 
-`func (o *EthFlowDescription) GetDestMacAddrEndOk() (*Object, bool)`
+`func (o *EthFlowDescription) GetDestMacAddrEndOk() (*string, bool)`
 
 GetDestMacAddrEndOk returns a tuple with the DestMacAddrEnd field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDestMacAddrEnd
 
-`func (o *EthFlowDescription) SetDestMacAddrEnd(v Object)`
+`func (o *EthFlowDescription) SetDestMacAddrEnd(v string)`
 
 SetDestMacAddrEnd sets DestMacAddrEnd field to given value.
 

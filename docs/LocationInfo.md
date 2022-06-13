@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Loc** | [**UserLocation**](UserLocation.md) |  | 
-**Ratio** | Pointer to **int32** |  | [optional] 
-**Confidence** | Pointer to **int32** |  | [optional] 
+**Ratio** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
+**Confidence** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
 
 ## Methods
 

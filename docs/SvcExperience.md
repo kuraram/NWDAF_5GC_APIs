@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Mos** | Pointer to **float32** |  | [optional] 
-**UpperRange** | Pointer to **float32** |  | [optional] 
-**LowerRange** | Pointer to **float32** |  | [optional] 
+**Mos** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
+**UpperRange** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
+**LowerRange** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
 
 ## Methods
 

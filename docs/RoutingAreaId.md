@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PlmnId** | [**PlmnId**](PlmnId.md) |  | 
-**Lac** | **string** |  | 
-**Rac** | **string** |  | 
+**Lac** | **string** | Location Area Code | 
+**Rac** | **string** | Routing Area Code | 
 
 ## Methods
 

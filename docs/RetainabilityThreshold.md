@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RelFlowNum** | Pointer to **int32** |  | [optional] 
+**RelFlowNum** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
 **RelTimeUnit** | Pointer to [**TimeUnit**](TimeUnit.md) |  | [optional] 
-**RelFlowRatio** | Pointer to **int32** |  | [optional] 
+**RelFlowRatio** | Pointer to **int32** | Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502), expressed in percent. | [optional] 
 
 ## Methods
 

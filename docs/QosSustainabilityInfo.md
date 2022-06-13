@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AreaInfo** | Pointer to [**NetworkAreaInfo**](NetworkAreaInfo.md) |  | [optional] 
-**StartTs** | Pointer to **time.Time** |  | [optional] 
-**EndTs** | Pointer to **time.Time** |  | [optional] 
+**StartTs** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**EndTs** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
 **QosFlowRetThd** | Pointer to [**RetainabilityThreshold**](RetainabilityThreshold.md) |  | [optional] 
-**RanUeThrouThd** | Pointer to **string** |  | [optional] 
+**RanUeThrouThd** | Pointer to **string** | String representing a bit rate prefixes follow the standard symbols from The International System of Units, and represent x1000 multipliers, with the exception that prefix \&quot;K\&quot; is used to represent the standard symbol \&quot;k\&quot;. | [optional] 
 **Snssai** | Pointer to [**Snssai**](Snssai.md) |  | [optional] 
-**Confidence** | Pointer to **int32** |  | [optional] 
+**Confidence** | Pointer to **int32** | Unsigned Integer, i.e. only value 0 and integers above 0 are permissible. | [optional] 
 
 ## Methods
 

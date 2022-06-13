@@ -75,7 +75,31 @@
 
 * `IMS_AS` (value: `"IMS_AS"`)
 
+* `AANF` (value: `"AANF"`)
+
+* `_5_G_DDNMF` (value: `"5G_DDNMF"`)
+
+* `NSACF` (value: `"NSACF"`)
+
+* `MFAF` (value: `"MFAF"`)
+
+* `EASDF` (value: `"EASDF"`)
+
+* `DCCF` (value: `"DCCF"`)
+
+* `MB_SMF` (value: `"MB-SMF"`)
+
+* `TSCTSF` (value: `"TSCTSF"`)
+
+* `ADRF` (value: `"ADRF"`)
+
+* `GBA_BSF` (value: `"GBA_BSF"`)
+
 * `CEF` (value: `"CEF"`)
+
+* `MB_UPF` (value: `"MB-UPF"`)
+
+* `NSWOF` (value: `"NSWOF"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

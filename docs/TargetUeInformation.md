@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AnyUe** | Pointer to **bool** |  | [optional] 
 **Supis** | Pointer to **[]string** |  | [optional] 
+**Gpsis** | Pointer to **[]string** |  | [optional] 
 **IntGroupIds** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -76,6 +77,31 @@ SetSupis sets Supis field to given value.
 `func (o *TargetUeInformation) HasSupis() bool`
 
 HasSupis returns a boolean if a field has been set.
+
+### GetGpsis
+
+`func (o *TargetUeInformation) GetGpsis() []string`
+
+GetGpsis returns the Gpsis field if non-nil, zero value otherwise.
+
+### GetGpsisOk
+
+`func (o *TargetUeInformation) GetGpsisOk() (*[]string, bool)`
+
+GetGpsisOk returns a tuple with the Gpsis field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpsis
+
+`func (o *TargetUeInformation) SetGpsis(v []string)`
+
+SetGpsis sets Gpsis field to given value.
+
+### HasGpsis
+
+`func (o *TargetUeInformation) HasGpsis() bool`
+
+HasGpsis returns a boolean if a field has been set.
 
 ### GetIntGroupIds
 

@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **Sai** | Pointer to [**ServiceAreaId**](ServiceAreaId.md) |  | [optional] 
 **Lai** | Pointer to [**LocationAreaId**](LocationAreaId.md) |  | [optional] 
 **Rai** | Pointer to [**RoutingAreaId**](RoutingAreaId.md) |  | [optional] 
-**AgeOfLocationInformation** | Pointer to **int32** |  | [optional] 
-**UeLocationTimestamp** | Pointer to **time.Time** |  | [optional] 
-**GeographicalInformation** | Pointer to **string** |  | [optional] 
-**GeodeticInformation** | Pointer to **string** |  | [optional] 
+**AgeOfLocationInformation** | Pointer to **int32** | The value represents the elapsed time in minutes since the last network contact of the mobile station.  Value \&quot;0\&quot; indicates that the location information was obtained after a successful paging procedure for  Active Location Retrieval when the UE is in idle mode or after a successful location reporting procedure  the UE is in connected mode.Any other value than \&quot;0\&quot; indicates that the location information is the last known one.  See 3GPP TS 29.002 clause 17.7.8.  | [optional] 
+**UeLocationTimestamp** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
+**GeographicalInformation** | Pointer to **string** | Refer to geographical Information.See 3GPP TS 23.032 clause 7.3.2. Only the description of an ellipsoid point with uncertainty circle is allowed to be used. | [optional] 
+**GeodeticInformation** | Pointer to **string** | Refers to Calling Geodetic Location. See ITU-T Recommendation Q.763 (1999) clause 3.88.2.  Only the description of an ellipsoid point with uncertainty circle is allowed to be used.  | [optional] 
 
 ## Methods
 

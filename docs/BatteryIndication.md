@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BatteryInd** | Pointer to **bool** |  | [optional] 
-**ReplaceableInd** | Pointer to **bool** |  | [optional] 
-**RechargeableInd** | Pointer to **bool** |  | [optional] 
+**BatteryInd** | Pointer to **bool** | This IE shall indicate whether the UE is battery powered or not. true: the UE is battery powered; false or absent: the UE is not battery powered  | [optional] 
+**ReplaceableInd** | Pointer to **bool** | This IE shall indicate whether the battery of the UE is replaceable or not. true: the battery of the UE is replaceable; false or absent: the battery of the UE is not replaceable.  | [optional] 
+**RechargeableInd** | Pointer to **bool** | This IE shall indicate whether the battery of the UE is rechargeable or not. true: the battery of UE is rechargeable; false or absent: the battery of the UE is not rechargeable.  | [optional] 
 
 ## Methods
 

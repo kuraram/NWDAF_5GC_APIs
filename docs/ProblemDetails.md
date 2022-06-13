@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** | String providing an URI formatted according to RFC 3986 | [optional] 
 **Title** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **int32** |  | [optional] 
-**Detail** | Pointer to **string** |  | [optional] 
-**Instance** | Pointer to **string** |  | [optional] 
-**Cause** | Pointer to **string** |  | [optional] 
+**Detail** | Pointer to **string** | A human-readable explanation specific to this occurrence of the problem. | [optional] 
+**Instance** | Pointer to **string** | String providing an URI formatted according to RFC 3986 | [optional] 
+**Cause** | Pointer to **string** | A machine-readable application error cause specific to this occurrence of the problem.  This IE should be present and provide application-related error information, if available.  | [optional] 
 **InvalidParams** | Pointer to [**[]InvalidParam**](InvalidParam.md) |  | [optional] 
-**SupportedFeatures** | Pointer to **string** |  | [optional] 
+**SupportedFeatures** | Pointer to **string** | A string used to indicate the features supported by an API that is used as defined in clause  6.6 in 3GPP TS 29.500. The string shall contain a bitmask indicating supported features in  hexadecimal representation Each character in the string shall take a value of \&quot;0\&quot; to \&quot;9\&quot;,  \&quot;a\&quot; to \&quot;f\&quot; or \&quot;A\&quot; to \&quot;F\&quot; and shall represent the support of 4 features as described in  table 5.2.2-3. The most significant character representing the highest-numbered features shall  appear first in the string, and the character representing features 1 to 4 shall appear last  in the string. The list of features and their numbering (starting with 1) are defined  separately for each API. If the string contains a lower number of characters than there are  defined features for an API, all features that would be represented by characters that are not  present in the string are not supported.  | [optional] 
 **AccessTokenError** | Pointer to [**AccessTokenErr**](AccessTokenErr.md) |  | [optional] 
 **AccessTokenRequest** | Pointer to [**AccessTokenReq**](AccessTokenReq.md) |  | [optional] 
-**NrfId** | Pointer to **string** |  | [optional] 
+**NrfId** | Pointer to **string** | Fully Qualified Domain Name | [optional] 
 
 ## Methods
 

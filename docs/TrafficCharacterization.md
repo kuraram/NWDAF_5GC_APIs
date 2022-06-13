@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Dnn** | Pointer to **string** |  | [optional] 
+**Dnn** | Pointer to **string** | String representing a Data Network as defined in clause 9A of 3GPP TS 23.003; it shall contain either a DNN Network Identifier, or a full DNN with both the Network Identifier and Operator Identifier, as specified in 3GPP TS 23.003 clause 9.1.1 and 9.1.2. It shall be coded as string in which the labels are separated by dots (e.g. \&quot;Label1.Label2.Label3\&quot;). | [optional] 
 **Snssai** | Pointer to [**Snssai**](Snssai.md) |  | [optional] 
-**AppId** | Pointer to **string** |  | [optional] 
+**AppId** | Pointer to **string** | String providing an application identifier. | [optional] 
 **FDescs** | Pointer to [**[]IpEthFlowDescription**](IpEthFlowDescription.md) |  | [optional] 
 **UlVol** | Pointer to **int64** | Unsigned integer identifying a volume in units of bytes. | [optional] 
-**UlVolVariance** | Pointer to **float32** |  | [optional] 
+**UlVolVariance** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
 **DlVol** | Pointer to **int64** | Unsigned integer identifying a volume in units of bytes. | [optional] 
-**DlVolVariance** | Pointer to **float32** |  | [optional] 
+**DlVolVariance** | Pointer to **float32** | string with format &#39;float&#39; as defined in OpenAPI. | [optional] 
 
 ## Methods
 

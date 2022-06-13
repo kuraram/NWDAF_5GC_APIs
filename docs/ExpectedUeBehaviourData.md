@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StationaryIndication** | Pointer to [**StationaryIndication**](StationaryIndication.md) |  | [optional] 
-**CommunicationDurationTime** | Pointer to **int32** |  | [optional] 
-**PeriodicTime** | Pointer to **int32** |  | [optional] 
+**CommunicationDurationTime** | Pointer to **int32** | indicating a time in seconds. | [optional] 
+**PeriodicTime** | Pointer to **int32** | indicating a time in seconds. | [optional] 
 **ScheduledCommunicationTime** | Pointer to [**ScheduledCommunicationTime1**](ScheduledCommunicationTime1.md) |  | [optional] 
 **ScheduledCommunicationType** | Pointer to [**ScheduledCommunicationType**](ScheduledCommunicationType.md) |  | [optional] 
 **ExpectedUmts** | Pointer to [**[]LocationArea**](LocationArea.md) | Identifies the UE&#39;s expected geographical movement. The attribute is only applicable in 5G. | [optional] 
 **TrafficProfile** | Pointer to [**TrafficProfile**](TrafficProfile.md) |  | [optional] 
 **BatteryIndication** | Pointer to [**BatteryIndication**](BatteryIndication.md) |  | [optional] 
-**ValidityTime** | Pointer to **time.Time** |  | [optional] 
+**ValidityTime** | Pointer to **time.Time** | string with format &#39;date-time&#39; as defined in OpenAPI. | [optional] 
 
 ## Methods
 

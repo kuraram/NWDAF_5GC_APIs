@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SsId** | **string** |  | 
-**BssId** | Pointer to **string** |  | [optional] 
-**CivicAddress** | Pointer to **string** |  | [optional] 
+**SsId** | **string** | This IE shall contain the SSID of the access point to which the UE is attached, that is received over NGAP, see IEEE Std 802.11-2012. | 
+**BssId** | Pointer to **string** | When present, it shall contain the BSSID of the access point to which the UE is attached, for trusted WLAN access, see IEEE Std 802.11-2012. | [optional] 
+**CivicAddress** | Pointer to **string** | string with format &#39;bytes&#39; as defined in OpenAPI | [optional] 
 
 ## Methods
 

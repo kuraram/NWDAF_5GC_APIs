@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PlmnId** | [**PlmnId**](PlmnId.md) |  | 
-**Lac** | **string** |  | 
+**Lac** | **string** | Location Area Code | 
 
 ## Methods
 
